@@ -36,3 +36,10 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+group :test do
+  gem 'test-unit', '2.4.0'
+  gem 'memory_test_fix' #patches rails test to load db, keep it in memory
+  gem 'turn', :require=> false
+  gem 'capybara'
+end

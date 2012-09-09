@@ -6,13 +6,14 @@
   <fieldset>
     <legend>Please Log In</legend>
 
-    <div class="field">
+    <div>
       <label for="username">Username:</label>
       <%= text_field_tag :username, params[:username] %>
     </div>
-    <div class="field">
+
+    <div>
       <label for="password">Password:</label>
-      <%= password_field_tag :password, :params[:password] %>
+      <%= password_field_tag :password, params[:password] %>
     </div>
 
     <div class="actions">

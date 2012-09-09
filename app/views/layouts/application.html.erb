@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Csc517p1</title>
+  <title>CSC 517 Program 1 - Backchannel App</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<div id="columns">
+  <div id="side">
+    <a href="/">Home</a><br />
+    <a href="/login">Login</a><br />
+    <a href="users/new/">Sign-Up</a><br />
+    <a href="posts/">Posts</a><br />
+  </div>
+  <div id="main">
+    <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>

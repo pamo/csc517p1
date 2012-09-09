@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  UserName: MyString
-  admin: false
+  username: MyString
+  usertype: MyString
   password: MyString
 
 two:
-  UserName: MyString
-  admin: false
+  username: MyString
+  usertype: MyString
   password: MyString

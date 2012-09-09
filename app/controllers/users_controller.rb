@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :authorize, :only => [:index]
+  skip_before_filter :authorize, :only => [:index, :new, :create]
   # GET /users
   # GET /users.json
   def index

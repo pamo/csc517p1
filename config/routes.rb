@@ -1,8 +1,7 @@
 Csc517p1::Application.routes.draw do
-  resources :users
+  resources :posts
 
-  resources :login
-  resources :signup
+  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,7 +1,7 @@
 Csc517p1::Application.routes.draw do
-  get "home/index"
-
   resources :users
+
+  get "home/index"
 
   resources :posts
 

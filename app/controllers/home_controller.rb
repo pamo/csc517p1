@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  # GET /home
+  # GET home.xml
   def login
   end
 

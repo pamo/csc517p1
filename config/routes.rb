@@ -1,7 +1,12 @@
 Csc517p1::Application.routes.draw do
+  resources :users
+
   get "home/login"
 
   get "home/signup"
+
+  resources :login
+  resources :signup
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -8,11 +8,14 @@
 </head>
 <body>
 <div id="columns">
-  <div id="side">
+  <div id="navigation">
     <a href="/">Home</a><br />
     <a href="/login">Login</a><br />
     <a href="users/new/">Sign-Up</a><br />
     <a href="posts/">Posts</a><br />
+    <% if session[:user_id] %>
+        <%= button_to 'Logout', logout_path, :method => :delete %>
+    <% end %>
   </div>
   <div id="main">
     <%= yield %>

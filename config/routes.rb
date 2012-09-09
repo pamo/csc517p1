@@ -1,4 +1,6 @@
 Csc517p1::Application.routes.draw do
+  resources :users
+
   get 'admin' => 'admin#index'
 
   controller :sessions do
@@ -14,8 +16,6 @@ Csc517p1::Application.routes.draw do
   get "sessions/destroy"
 
   get "home/index"
-
-  resources :users
 
   resources :posts
 

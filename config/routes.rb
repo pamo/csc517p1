@@ -1,10 +1,6 @@
 Csc517p1::Application.routes.draw do
   resources :users
 
-  get "home/login"
-
-  get "home/signup"
-
   resources :login
   resources :signup
 

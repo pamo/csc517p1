@@ -10,16 +10,19 @@
 <div id="columns">
   <div id="navigation">
     <a href="/">Home</a><br />
-    <a href="/login">Login</a><br />
-    <a href="users/new/">Sign-Up</a><br />
     <a href="posts/">Posts</a><br />
-    <% if session[:user_id] %>
-        <%= button_to 'Logout', logout_path, :method => :delete %>
+
+    <% if !session[:user_id] %>
+        <a href="/login">Login</a><br />
+        <a href="users/new/">Sign-Up</a><br />
     <% end %>
   </div>
   <div id="main">
     <%= yield %>
   </div>
+  <% if session[:user_id] %>
+      <%= button_to 'Logout', logout_path, :method => :delete %>
+  <% end %>
 </div>
 
 </body>

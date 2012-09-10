@@ -92,4 +92,15 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+<<<<<<< HEAD
 end
+=======
+
+  # GET /users/search_results
+  def search
+    @user = User.search params[:search]
+    display_results
+  end
+
+end
+>>>>>>> modified search code [only users]

@@ -18,6 +18,18 @@ Csc517p1::Application.routes.draw do
   get "sessions/destroy"
   get "home/index"
 
+<<<<<<< HEAD
+=======
+  get "users/search_results"
+
+  resources :users
+
+  resources :posts
+
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
+
+>>>>>>> modified search code [only users]
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

@@ -13,9 +13,11 @@ Csc517p1::Application.routes.draw do
     resources :posts, :only => [:new, :create, :show, :index, :destroy]
   end
 
+  get 'posts' => 'posts#index'
   get 'posts/index'
   get 'posts/show'
   get 'posts/new'
+
 
   match 'posts/search',   :to => 'posts#search'
 

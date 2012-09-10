@@ -21,7 +21,6 @@ Csc517p1::Application.routes.draw do
 
   get 'admin' => 'admin#index'
 
-
   get "sessions/new"
   get "sessions/create"
   get "sessions/destroy"

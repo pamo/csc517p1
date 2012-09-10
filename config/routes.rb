@@ -2,8 +2,16 @@ Csc517p1::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :users
-  resources :posts
+  resources :users do
+    resources :posts, :only => [:new, :create, :show, :index, :destroy]
+  end
+
+  get 'posts/index'
+  get 'posts/show'
+  get 'posts/post'
+
+  match 'posts/search',   :to => 'posts#search'
+
 
   get 'admin' => 'admin#index'
 

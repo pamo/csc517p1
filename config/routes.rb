@@ -1,5 +1,9 @@
 Csc517p1::Application.routes.draw do
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
+
   resources :users
+  resources :posts
 
   get 'admin' => 'admin#index'
 
@@ -10,18 +14,9 @@ Csc517p1::Application.routes.draw do
   end
 
   get "sessions/new"
-
   get "sessions/create"
-
   get "sessions/destroy"
-
   get "home/index"
-
-  resources :posts
-  resources :users
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

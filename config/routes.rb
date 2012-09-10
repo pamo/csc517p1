@@ -3,6 +3,12 @@ Csc517p1::Application.routes.draw do
   # first created -> highest priority.
   root :to => 'home#index', :as => 'home'
 
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
   resources :users do
     resources :posts, :only => [:new, :create, :show, :index, :destroy]
   end
@@ -15,11 +21,6 @@ Csc517p1::Application.routes.draw do
 
   get 'admin' => 'admin#index'
 
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
 
   get "sessions/new"
   get "sessions/create"

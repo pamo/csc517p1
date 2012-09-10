@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_filter :authorize, :only => [:index, :show]
-  belongs_to :user
+  #belongs_to :user
   # GET /posts
   # GET /posts.json
   def index

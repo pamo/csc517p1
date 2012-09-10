@@ -15,7 +15,7 @@ Csc517p1::Application.routes.draw do
 
   get 'posts/index'
   get 'posts/show'
-  get 'posts/post'
+  get 'posts/new'
 
   match 'posts/search',   :to => 'posts#search'
 

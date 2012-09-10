@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   skip_before_filter :authorize, :only => [:index, :show]
-  #belongs_to :user
+
+  # belongs_to :user
   # GET /posts
   # GET /posts.json
   def index
@@ -27,8 +28,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new(params[:post])
-
+    @post = Post.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }

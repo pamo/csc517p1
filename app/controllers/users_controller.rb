@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  has_many :posts
   skip_before_filter :authorize, :only => [:new, :create]
   # GET /users
   # GET /users.xml

@@ -1,6 +1,6 @@
 
 
-<%= form_tag('users/search', :method => 'get') do %>
+<%= form_tag('users/search_results', :method => 'get') do %>
     <%= label_tag(:search, "Search for:") %>
     <%= text_field_tag(:search,  params[:search]) %>
     <%= submit_tag("Find it!") %>

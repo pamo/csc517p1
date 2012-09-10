@@ -1,7 +1,7 @@
 <h1>Search Results in Users</h1>
 <ul>
   <% @users.each do |users| %>
-      <li><%= link_to user.username,
+      <li><%= link_to user.name,
                       :action => 'show', :id => users.id  %></li>
   <% end %>
 </ul>

@@ -27,10 +27,8 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new
-    if user = User.authenticate(params[:username], params[:password])
-      @post.username = user.name
-    end
+    @post = Post.new(params[:post])
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }

@@ -34,19 +34,4 @@ class User < ActiveRecord::Base
     errors.add(:password, "Missing password") unless password.present?
   end
 
-<<<<<<< HEAD
-=======
-  def self.search(search)
-    if search
-      find(:all, :conditions => ['username LIKE ?', "%#{search}%"])
-    else
-      find(:all)
-    end
-
-  end
-
-
-
-
->>>>>>> modified search code [only users]
 end

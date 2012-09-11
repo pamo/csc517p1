@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    @post.username = User.find(session[:user_id]).name
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }

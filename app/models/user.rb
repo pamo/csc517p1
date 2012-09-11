@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :password, :password_confirmation, :admin
   has_many :posts
+  has_many :comments, :through => :posts
   validates :name, :presence => true, :uniqueness => true
 
   validates :password, :confirmation => true

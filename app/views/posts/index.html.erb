@@ -28,4 +28,4 @@
 
 <br />
 
-<%= link_to 'New Post', new_user_post_path(session[:user_id]) %>
+<%= link_to 'New Post', new_post_path, :id => session[:user_id] %>

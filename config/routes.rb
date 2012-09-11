@@ -1,4 +1,6 @@
 Csc517p1::Application.routes.draw do
+  resources :comments
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root :to => 'home#index', :as => 'home'
@@ -9,9 +11,8 @@ Csc517p1::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  resources :users do
-    resources :posts, :only => [:new, :create, :show, :index, :destroy]
-  end
+  resources :users
+  resources :posts
 
   get 'posts' => 'posts#index'
   get 'posts/index'

@@ -29,30 +29,28 @@
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
 
-<h1>Listing comments</h1>
 
 <table>
+  <tr>
+    <td colspan="4"><h2>Comments for this post</h2></td>
+  </tr>
+
   <tr>
     <th>Username</th>
     <th>Post ID</th>
     <th>Body</th>
     <th>Votes</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
   <%= @comments = Comment.find_all_by_postid(@post.id) %>
+
   <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.username %></td>
         <td><%= comment.postid %></td>
         <td><%= comment.body %></td>
         <td><%= comment.votes %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+       </tr>
   <% end %>
 </table>
 

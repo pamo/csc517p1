@@ -10,8 +10,6 @@
       </ul>
     </div>
   <% end %>
-    Commenting on post ID <%=  @post = Post.find_by_id(@comment.postid)%><br/>
-
   <div class="field">
       Author: <%= @comment.username %><br/>
   </div>
@@ -20,11 +18,12 @@
     <%= f.label :body %><br />
     <%= f.text_area :body %>
   </div>
-  <div class="field">
-    <%= f.hidden_field :postid, :value => @post.id %>
-  </div>
-  <div class="actions">
 
+
+
+  <div class="actions">
+    <%= f.hidden_field :postid %>
+    <%= hidden_field_tag 'postid', @post.id  %>
     <%= f.submit %>
   </div>
 <% end %>

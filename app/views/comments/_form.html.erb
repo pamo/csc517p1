@@ -10,9 +10,9 @@
       </ul>
     </div>
   <% end %>
+    Commenting on post ID <%=  @post = Post.find_by_id(@comment.postid)%><br/>
 
   <div class="field">
-      Commenting on post <%= params[:pid] %><br/>
       Author: <%= @comment.username %><br/>
   </div>
 
@@ -20,8 +20,11 @@
     <%= f.label :body %><br />
     <%= f.text_area :body %>
   </div>
-
+  <div class="field">
+    <%= f.hidden_field :postid, :value => @post.id %>
+  </div>
   <div class="actions">
+
     <%= f.submit %>
   </div>
 <% end %>

@@ -25,7 +25,37 @@
   <%= @post.votes %>
 </p>
           <!-- TODO PASS post id -->
-<%= link_to 'New Comment', new_comment_path, :pid => @post.id %> |
+<%= link_to 'New Comment', new_comment_path, :post => @post.id %> |
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
 
+<h1>Listing comments</h1>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Post ID</th>
+    <th>Body</th>
+    <th>Votes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <%= @comments = Comment.find_all_by_postid(@post.id) %>
+  <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.username %></td>
+        <td><%= comment.postid %></td>
+        <td><%= comment.body %></td>
+        <td><%= comment.votes %></td>
+        <td><%= link_to 'Show', comment %></td>
+        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Comment', new_comment_path %>

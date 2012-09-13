@@ -18,11 +18,13 @@
         <%= f.label :name %>:
         <%= f.text_field :name, :size => 40 %>
       </div>
-      <% if(User.find(session[:user_id]).admin) %>
+      <% if (session[:user_id]) %>
+      <% if User.find((session[:user_id])).admin %>
           <div>
             <%= f.label :admin, 'Admin Privileges' %>:
             <%= f.check_box :admin %>
           </div>
+      <% end %>
       <% end %>
       <div>
         <%= f.label :password, 'Password' %>:

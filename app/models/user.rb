@@ -1,14 +1,13 @@
 class User < ActiveRecord::Base
+  attr_reader   :password
   attr_accessible :name, :password, :password_confirmation, :admin
   has_many :posts
   has_many :comments, :through => :posts
   validates :name, :presence => true, :uniqueness => true
 
   validates :password, :confirmation => true
-  attr_accessor :password_confirmation
-  attr_reader   :password
-
   validate  :password_must_be_present
+  attr_accessor :password_confirmation
 
   def User.authenticate(name, password)
     if user = find_by_name(name)

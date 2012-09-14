@@ -1,7 +1,16 @@
-<h1>Search Results in Users</h1>
-<ul>
-  <% @users.each do |users| %>
-      <li><%= link_to user.name,
-                      :action => 'show', :id => users.id  %></li>
+<%= form_tag('users/search', :method => 'get', :id => search) do %>
+    <%= label_tag(:search, "Search for:") %>
+    <%= text_field_tag(:search,  params[:search]) %>
+    <%= submit_tag("Find it!") %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Users</th>
+  </tr>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user %></td>
+      </tr>
   <% end %>
-</ul>
+</table>

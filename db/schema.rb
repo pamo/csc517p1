@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120915201238) do
 
   create_table "categories", :force => true do |t|
@@ -18,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+=======
+ActiveRecord::Schema.define(:version => 20120915185115) do
+>>>>>>> added Searches controller
 
   create_table "comments", :force => true do |t|
     t.string   "username"
@@ -35,6 +39,13 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
     t.integer  "votes"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "searches", :force => true do |t|
+    t.string   "search_item"
+    t.text     "results"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

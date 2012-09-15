@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :authorize, :only => [:new, :create]
+  protect_from_forgery :only => [:create, :update, :destroy]
   # GET /users
   # GET /users.xml
   def index
@@ -93,21 +94,20 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/search
   def search
-    if params[:search]
-     @users = User.search (params[:search])
+    if params[:search_item]
+      @users = User.search (params[:search_item])
     else
       @users = []
 
-    respond_to do |format|
-      format.html  #search.html.erb
-      format.xml  {render xml: @users}
+      render :partial => "search_results"
+
+      respond_to do |format|
+        format.html
+        format.xml  {render xml: @users}
+      end
     end
+
     end
-
-  end
-
-
 
 end

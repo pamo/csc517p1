@@ -26,7 +26,6 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @comment.username = User.find(session[:user_id]).name
-   # @comment.postid = @post.id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }

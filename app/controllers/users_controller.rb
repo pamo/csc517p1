@@ -93,14 +93,19 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/search_results
+  # GET /users/search
   def search
-    @users = User.search (params[:search])
+    if params[:search]
+     @users = User.search (params[:search])
+    else
+      @users = []
 
     respond_to do |format|
-      format.html  #search_results.html.erb
+      format.html  #search.html.erb
       format.xml  {render xml: @users}
     end
+    end
+
   end
 
 

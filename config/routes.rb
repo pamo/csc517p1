@@ -9,11 +9,24 @@ Csc517p1::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
+<<<<<<< HEAD
   resources :users
   resources :posts
   resources :comments
 
   get 'posts' => 'posts#index'
+=======
+
+  resources :users do
+    resources :posts, :only => [:new, :create, :show, :index, :destroy]
+  end
+
+  resources :users, :users => {:search => :get}
+  #resources :posts, :posts => {:search => :get}
+
+  match 'users/search',  :to => 'users#search'
+
+>>>>>>> more search modifications
   get 'posts/index'
   get 'posts/show'
   get 'posts/new'

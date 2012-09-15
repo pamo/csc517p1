@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
 
   create_table "comments", :force => true do |t|
     t.string   "username"
-    t.integer  "post_id"
     t.text     "body"
     t.integer  "votes"
     t.datetime "created_at", :null => false

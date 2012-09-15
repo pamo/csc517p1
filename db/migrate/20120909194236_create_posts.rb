@@ -3,9 +3,9 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :username
       t.text :content
-      t.string :category
       t.integer :votes
 
+      t.references :category
       t.timestamps
     end
   end

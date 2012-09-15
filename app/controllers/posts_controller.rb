@@ -47,6 +47,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
+
     if session[:user_id]
       @post.username = User.find(session[:user_id]).name
     end

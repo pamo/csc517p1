@@ -7,6 +7,6 @@ class Post < ActiveRecord::Base
   validates :user, :presence => true
   validates :category, :presence => true
 
-  attr_accessible :category, :content, :username, :votes
+  attr_accessible :category_id, :content, :username, :votes
 
 end

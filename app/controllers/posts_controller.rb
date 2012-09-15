@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.find_all_by_postid(@post.id)
+    @comments = Comment.find_all_by_post_id(@post.id)
 
     respond_to do |format|
       format.html # show.html.erb

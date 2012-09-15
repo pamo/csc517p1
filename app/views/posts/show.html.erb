@@ -25,10 +25,9 @@
   <%= @post.votes %>
 </p>
           <!-- TODO PASS post id -->
-<%= link_to 'New Comment', new_comment_path, :post => @post.id %> |
+<%# link_to 'New Comment', new_comment_path, :post => @post.id %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
-
 
 <table>
   <tr>
@@ -41,9 +40,6 @@
     <th>Body</th>
     <th>Votes</th>
   </tr>
-
-  <%= @comments = Comment.find_all_by_postid(@post.id) %>
-
   <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.username %></td>

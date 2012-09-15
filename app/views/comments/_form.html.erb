@@ -1,4 +1,5 @@
 <%= form_for(@comment) do |f| %>
+
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -10,6 +11,7 @@
       </ul>
     </div>
   <% end %>
+<%= f.hidden_field :postid, :value => @post.id %>
   <div class="field">
       Author: <%= @comment.username %><br/>
   </div>
@@ -19,11 +21,7 @@
     <%= f.text_area :body %>
   </div>
 
-
-
   <div class="actions">
-    <%= f.hidden_field :postid %>
-    <%= hidden_field_tag 'postid', @post.id  %>
     <%= f.submit %>
   </div>
 <% end %>

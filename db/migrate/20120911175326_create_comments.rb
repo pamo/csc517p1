@@ -5,6 +5,7 @@ class CreateComments < ActiveRecord::Migration
       t.integer :postid
       t.text :body
       t.integer :votes
+      t.references :post
 
       t.timestamps
     end

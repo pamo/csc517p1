@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @posts = Post.all()
     @posts = Post.order('updated_at desc')
 
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -18,6 +19,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @comments = Comment.find_all_by_postid(@post.id)
 
     respond_to do |format|
       format.html # show.html.erb

@@ -8,20 +8,21 @@
   <tr>
     <th>Users</th>
   </tr>
-  <ul>
-    <% if @found_users %>
-        <% @found_users.each do |user| %>
-            <li>
-              <%= link_to user.name, :action=>"show" , :id=>user.id %>
-            </li>
-
+  <% if @found_users.empty? %>
+      <span>There were no results for your query</span><br/><br/>
+  <% else %>
+      <ul>
+        <% for user in @found_users %>
+            <li><% user.name %></li>
         <% end %>
-   </ul>
-    <% else %>
-        <h2>No results found.</h2>
+      </ul>
+
   <% end %>
     </table>
 </p>
+
+
+
 
 
 

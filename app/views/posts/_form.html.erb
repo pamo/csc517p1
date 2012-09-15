@@ -16,17 +16,17 @@
     <%= User.find(session[:user_id]).name  %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
     <%= f.label :category %><br />
     <%= f.text_field :category %>
   </div>
   <div class="field">
-    <%= f.label :votes %><br />
-    <%= f.number_field :votes %>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
   </div>
+  <!--div class="field">
+    <%#= f.label :votes %>
+    <%#= f.number_field :votes %>
+  </div-->
   <div class="actions">
     <%= f.submit %>
   </div>

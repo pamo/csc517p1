@@ -24,9 +24,8 @@
   <b>Votes:</b>
   <%= @post.votes %>
 </p>
-          <!-- TODO PASS post id -->
-<%# link_to 'New Comment', new_comment_path, :post => @post.id %>
-<%= link_to "New comment", new_comment_path, :post_id => @post.id %>
+
+<%#= link_to "New comment", new_comment_path, :post_id => @post.id %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
 
@@ -41,7 +40,7 @@
     <th>Body</th>
     <th>Votes</th>
   </tr>
-  <% @comments.each do |comment| %>
+  <%= @comments.each do |comment| %>
       <tr>
         <td><%= comment.username %></td>
         <td><%= comment.postid %></td>
@@ -53,4 +52,4 @@
 
 <br />
 
-<%= link_to 'New Comment', new_comment_path %>
+<%#= link_to 'New Comment', new_comment_path %>

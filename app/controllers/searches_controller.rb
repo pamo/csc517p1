@@ -14,7 +14,11 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
-    @search = Search.find(params[:id])
+     if params[:search_item]
+        @users = User.search(params[:search_item])
+      else
+        @users = []
+      end
 
     respond_to do |format|
       format.html # show.html.erb

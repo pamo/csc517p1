@@ -100,7 +100,7 @@ class UsersController < ApplicationController
     else
       @users = []
 
-      render :partial => "search_results"
+      #render :partial => "search_results"
 
       respond_to do |format|
         format.html

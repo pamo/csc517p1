@@ -1,15 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Search item:</b>
-  <%= @search.search_item %>
-</p>
+<h1>Search Results</h1>
 
 <p>
   <b>Results:</b>
-  <%= @search.results %>
+<table>
+  <tr>
+    <th>Users</th>
+  </tr>
+  <ul>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.name, :controller=>"user", :action=>"show", :id=>user %></td>
+        </tr>
+        </ul>
+    <% end %>
+    </table>
 </p>
 
 
-<%= link_to 'Edit', edit_search_path(@search) %> |
-<%= link_to 'Back', searches_path %>
+

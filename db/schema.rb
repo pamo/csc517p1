@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
 
   create_table "comments", :force => true do |t|
     t.string   "username"
+<<<<<<< HEAD
+=======
+    t.integer  "postid"
+>>>>>>> Modified Search (redirecting but not showing results)
     t.text     "body"
     t.integer  "votes"
     t.integer  "post_id"

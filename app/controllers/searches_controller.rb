@@ -15,9 +15,10 @@ class SearchesController < ApplicationController
   # GET /searches/1.json
   def show
      if params[:search_item]
-        @users = User.search(params[:search_item])
+        @found_users = User.search(params[:search_item])
       else
-        @users = []
+        @found_users = []
+
       end
 
     respond_to do |format|

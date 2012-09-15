@@ -14,7 +14,7 @@ Csc517p1::Application.routes.draw do
   resources :posts
   resources :categories
   resources :comments
-  resources :users, :users => {:search => :get}
+  resources :users #, :users => {:search => :get}
   resources :searches
 
   get 'posts' => 'posts#index'

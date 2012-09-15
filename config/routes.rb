@@ -1,8 +1,4 @@
 Csc517p1::Application.routes.draw do
-  resources :categories
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
   root :to => 'home#index', :as => 'home'
 
   controller :sessions do
@@ -18,16 +14,13 @@ Csc517p1::Application.routes.draw do
   resources :searches
 
   get 'posts' => 'posts#index'
-
-  # resources :posts, :posts => {:search => :get}
-
-  match 'users/search',  :to => 'users#search'
-
   # more search modifications
-  get 'posts/index'
   get 'posts/show'
   get 'posts/new'
   match 'posts/search',   :to => 'posts#search'
+  # resources :posts, :posts => {:search => :get}
+
+  match 'users/search',  :to => 'users#search'
 
   get 'comments' => 'comments#index'
   get 'comments/index'

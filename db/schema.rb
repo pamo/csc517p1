@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
   create_table "posts", :force => true do |t|
     t.string   "username"
     t.text     "content"
-    t.integer  "category_id"
+    t.string   "category"
     t.integer  "votes"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

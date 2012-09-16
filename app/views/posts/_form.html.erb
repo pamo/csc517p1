@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :username %>:
-    <%= User.find(session[:user_id]).name  %>
-  </div>
-  <div class="field">
     <%= f.label :category %><br />
     <%= collection_select(:post, :category_id, Category.all, :id, :name, :prompt => true) %>
     </div>

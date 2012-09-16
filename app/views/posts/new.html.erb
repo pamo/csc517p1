@@ -1,4 +1,4 @@
-<h1>New post</h1>
+<h1>New post as <%= User.find(session[:user_id]).name %></h1>
 
 <%= render 'form' %>
 

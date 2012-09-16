@@ -28,12 +28,9 @@
 <%#= link_to "New comment", new_comment_path(:post_id => @post.id) %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
-
-<hr>
-
 <%= render :partial => 'comment', :collection => @post.comments %>
-
-<h3>Post a Comment</h3>
+<hr>
+<b>Post a Comment</b>
 <%= form_for(@comment) do |f| %>
     <%= f.hidden_field :username %><br/>
     <% if @comment.errors.any? %>
@@ -49,8 +46,7 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :body %><br />
-      <%= f.text_area :body %>
+      <%= f.text_area :body, :rows => 5 %>
     </div>
 
     <div class="actions">

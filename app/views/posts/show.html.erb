@@ -25,29 +25,36 @@
   <%= @post.votes %>
 </p>
 
-<%= link_to "New comment", new_comment_path(:post_id => @post.id) %> |
+<%#= link_to "New comment", new_comment_path(:post_id => @post.id) %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
-<table>
-  <tr>
-    <td colspan="4"><h2>Comments for this post</h2></td>
-  </tr>
 
-  <tr>
-    <th>Username</th>
-    <th>Post ID</th>
-    <th>Body</th>
-    <th>Votes</th>
-  </tr>
-  <% @comments = Comment.find_all_by_post_id(@post.id) %>
-  <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.username %></td>
-        <td><%= comment.post_id %></td>
-        <td><%= comment.body %></td>
-        <td><%= comment.votes %></td>
-       </tr>
-  <% end %>
-</table>
+<hr>
 
-<%#= link_to 'New Comment', new_comment_path %>
+<%= render :partial => 'comment', :collection => @post.comments %>
+
+<h3>Post a Comment</h3>
+<%= form_for(@comment) do |f| %>
+    <%= f.hidden_field :username %><br/>
+    <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+          <ul>
+            <% @comment.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :body %><br />
+      <%= f.text_area :body %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Post Comment" %>
+    </div>
+<% end %>
+

@@ -28,7 +28,6 @@
 <%= link_to "New comment", new_comment_path(:post_id => @post.id) %> |
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
-
 <table>
   <tr>
     <td colspan="4"><h2>Comments for this post</h2></td>
@@ -40,7 +39,8 @@
     <th>Body</th>
     <th>Votes</th>
   </tr>
-  <%= @comments.each do |comment| %>
+  <% @comments = Comment.find_all_by_post_id(@post.id) %>
+  <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.username %></td>
         <td><%= comment.post_id %></td>
@@ -49,7 +49,5 @@
        </tr>
   <% end %>
 </table>
-
-<br />
 
 <%#= link_to 'New Comment', new_comment_path %>

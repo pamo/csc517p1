@@ -26,6 +26,8 @@ Csc517p1::Application.routes.draw do
   get 'comments/index'
   get 'comments/show'
   get 'comments/new'
+  match 'comments/new(/:post_id)' => 'comments#new', :as => :new_comment
+
 
   get 'admin' => 'admin#index'
 

@@ -14,7 +14,7 @@
 <% @comments.each do |comment| %>
   <tr>
     <td><%= comment.username %></td>
-    <td><%= comment.postid %></td>
+    <td><%= comment.post_id %></td>
     <td><%= comment.body %></td>
     <td><%= comment.votes %></td>
     <td><%= link_to 'Show', comment %></td>
@@ -26,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New Comment', new_comment_path %>
+<%#= link_to 'New Comment', new_comment_path %>

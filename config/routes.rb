@@ -1,5 +1,6 @@
 Csc517p1::Application.routes.draw do
-  root :to => 'home#index', :as => 'home'
+  root :to => 'posts#index', :as => 'home'
+  root :to => 'posts#index', :as => 'admin'
 
   controller :sessions do
     get 'login' => :new

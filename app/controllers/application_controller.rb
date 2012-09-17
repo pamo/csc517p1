@@ -13,7 +13,13 @@ class ApplicationController < ActionController::Base
 
   def authorize
     unless logged_in?
-      redirect_to login_url, :notice => "Please log in"
+      redirect_to login_url, :alert => "Please log in"
+    end
+  end
+
+  def is_admin?
+    unless logged_in? && current_user.admin
+      redirect_to home_url, :alert => "Please log in as admin"
     end
   end
 end

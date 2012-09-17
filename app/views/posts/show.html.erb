@@ -22,14 +22,16 @@
 
 <p>
   <b>Votes:</b>
-  <%= @post.votes %>
+  <%= @post.votes %> [<%= link_to "vote", :controller => :posts, :action => :vote %>]
 </p>
+<!--TODO add an admin check-->
 <% if(current_user == @post.username) %>
     <%= link_to 'Edit', edit_post_path(@post) %> |
     <%= link_to 'Back', posts_path %>
 <% end %>
 <h3>Comments</h3>
 <%= render :partial => 'comment', :collection => @post.comments %>
+<% if logged_in? %>
 <hr>
 <b>Post a Comment</b>
 <%= form_for(@comment) do |f| %>
@@ -55,4 +57,4 @@
       <%= f.submit "Post Comment" %>
     </div>
 <% end %>
-
+<% end %>

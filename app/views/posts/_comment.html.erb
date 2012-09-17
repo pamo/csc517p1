@@ -1,6 +1,12 @@
-<div class="comment">
-  <i><%=h comment.username %> says:</i> <%= simple_format h(comment.body) %> with <%= comment.votes %> votes
+
+  <div><b><%= comment.username %></b> says: <%= comment.body %> (<%= comment.votes %> votes)
+    [
+    <% if current_user.name == comment.username %>
+         <%= link_to "Edit", edit_comment_path(comment) %> |
+        <%= link_to "Delete", comment, method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <% end %>
+    <%= link_to "Vote", :controller => :comments, :action => :vote, :id => comment.id %> ]
+  </div>
   <%#= link_to 'Destroy Comment', comment,
               :confirm => 'Are you sure?',
               :method => :delete %>
-</div>

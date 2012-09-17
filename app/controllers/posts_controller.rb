@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new(:post => @post)
-    #@comments = Comment.find_all_by_post_id(@post.id)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
-    @post.username = User.find(session[:user_id]).name
+    @post.username = current_user
 
     respond_to do |format|
       format.html # new.html.erb

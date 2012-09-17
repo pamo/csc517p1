@@ -1,7 +1,7 @@
 
   <div><b><%= comment.username %></b> says: <%= comment.body %> (<%= comment.votes %> votes)
     [
-    <% if current_user.name == comment.username %>
+    <% if logged_in? && ((comment.username == current_user.name) || current_user.admin) %>
          <%= link_to "Edit", edit_comment_path(comment) %> |
         <%= link_to "Delete", comment, method: :delete, data: { confirm: 'Are you sure?' } %> |
     <% end %>

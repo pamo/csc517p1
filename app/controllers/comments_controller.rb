@@ -83,7 +83,8 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  # TODO Add restrictions for multiple voting on comment
+  # TODO Add restrictions for self voting on comment
   def vote
     @comment = Comment.find(params[:id])
     @comment.votes += 1

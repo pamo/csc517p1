@@ -91,6 +91,9 @@ class PostsController < ApplicationController
     end
   end
 
+  # TODO Add restrictions for multiple voting on post
+  # TODO Add restrictions for self voting on post
+
   def vote
     @post = Post.find(params[:id])
     @post.votes += 1

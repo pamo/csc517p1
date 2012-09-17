@@ -16,8 +16,7 @@
     <td><%= post.updated_at %></td>
 
     <td class="no_border"><%= link_to 'Show', post %></td>
-    <!-- TODO Admin check -->
-    <% if logged_in? && post.username == current_user.name %>
+    <% if logged_in? && ((post.username == current_user.name) || current_user.admin) %>
     <td class="no_border"><%= link_to 'Edit', edit_post_path(post) %></td>
     <td class="no_border"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>

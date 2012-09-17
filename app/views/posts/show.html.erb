@@ -24,11 +24,10 @@
   <b>Votes:</b>
   <%= @post.votes %> [<%= link_to "vote", :controller => :posts, :action => :vote %>]
 </p>
-<!--TODO add an admin check-->
-<% if(current_user == @post.username) %>
+<% if logged_in? && ((@post.username == current_user.name) || current_user.admin) %>
     <%= link_to 'Edit', edit_post_path(@post) %> |
-    <%= link_to 'Back', posts_path %>
 <% end %>
+<%= link_to 'Back', posts_path %>
 <h3>Comments</h3>
 <%= render :partial => 'comment', :collection => @post.comments %>
 <% if logged_in? %>

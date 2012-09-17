@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :is_admin?, :only => [:index]
   # GET /comments
   # GET /comments.json
   def index
@@ -78,7 +79,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to post_path(@comment.post_id) }
       format.json { head :no_content }
     end
   end

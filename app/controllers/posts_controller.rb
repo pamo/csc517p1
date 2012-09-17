@@ -90,4 +90,19 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def vote
+    @post = Post.find(params[:id])
+    @post.votes += 1
+
+    respond_to do |format|
+      if @post.update_attributes(params[:post])
+        format.html { redirect_to @post, notice: "Your vote was cast" }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @post, notice: "Your cannot vote for this post" }
+        format.json { render json: @post }
+      end
+    end
+  end
 end

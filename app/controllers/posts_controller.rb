@@ -91,8 +91,24 @@ class PostsController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
   # TODO Add restrictions for multiple voting on post
   # TODO Add restrictions for self voting on post
+=======
+  def search
+    if params[:search_item]
+      @posts = Post.search (params[:search_item])
+    else
+      @posts = []
+
+      respond_to do |format|
+        format.html
+        format.xml  {render xml: @users}
+      end
+    end
+
+  end
+>>>>>>> c39ab437f6858fe017890ef7455e3e673df9a005
 
   def vote
     @post = Post.find(params[:id])
@@ -108,4 +124,5 @@ class PostsController < ApplicationController
       end
     end
   end
+
 end

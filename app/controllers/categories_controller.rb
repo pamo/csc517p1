@@ -80,4 +80,19 @@ class CategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def search
+    if params[:search_item]
+      @categories = Category.search (params[:search_item])
+    else
+      @categories = []
+
+      respond_to do |format|
+        format.html
+        format.xml  {render xml: @users}
+      end
+    end
+
+  end
+
 end

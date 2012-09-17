@@ -5,14 +5,34 @@
 <p>
   <b>Results:</b>
 <table>
-  <% if @found_users.empty? %>
-      <span>There were no results for your query</span><br/><br/>
+  <% if @found_users.empty? & @found_categories.empty? & @found_posts.empty? & @found_comments.empty? %>
+      <span>There were no results for your query.</span><br/><br/>
   <% else %>
         <b>Users</b>
       <ul>
         <% @found_users.each do |user| %>
-            <li><%= link_to user.name,
-                            :action => 'show', :id=>user.id %></li>
+            <li><%= user.name %></li>
+        <% end %>
+      </ul>  <br/>
+
+      <b>Categories</b>
+      <ul>
+            <% @found_categories.each do |category| %>
+                <li><%= category.name %></li>
+        <% end %>
+      </ul>  <br/>
+
+      <b>Posts</b>
+      <ul>
+        <% @found_posts.each do |post| %>
+            <li><%= post.content %></li>
+        <% end %>
+      </ul>    <br/>
+
+      <b>Comments</b>
+      <ul>
+        <% @found_comments.each do |comment| %>
+            <li><%= comment.body %></li>
         <% end %>
       </ul>
 

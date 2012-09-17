@@ -16,10 +16,19 @@ class SearchesController < ApplicationController
   def show
      if params[:search_item]
         @found_users = User.search(params[:search_item])
+        @found_categories = Category.search(params[:search_item])
+        @found_posts = Post.search(params[:search_item])
+        @found_comments = Comment.search(params[:search_item])
+
       else
         @found_users = []
+        @found_categories = []
+        @found_posts = []
+        @found_comments = []
 
       end
+
+
 
     respond_to do |format|
       format.html # show.html.erb

@@ -83,8 +83,27 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+<<<<<<< HEAD
   # TODO Add restrictions for multiple voting on comment
   # TODO Add restrictions for self voting on comment
+=======
+
+  def search
+    if params[:search_item]
+      @comments = Comment.search (params[:search_item])
+    else
+      @comments = []
+
+      respond_to do |format|
+        format.html
+        format.xml  {render xml: @users}
+      end
+    end
+
+  end
+
+
+>>>>>>> c39ab437f6858fe017890ef7455e3e673df9a005
   def vote
     @comment = Comment.find(params[:id])
     @comment.votes += 1
@@ -99,4 +118,6 @@ class CommentsController < ApplicationController
       end
     end
   end
+
+
 end

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
   create_table "comments", :force => true do |t|
     t.string   "username"
     t.text     "body"
-    t.integer  "votes"
+    t.integer  "votes", :default => 0
     t.integer  "post_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
   create_table "posts", :force => true do |t|
     t.string   "username"
     t.text     "content"
-    t.integer  "votes"
+    t.integer  "votes", :default => 0
     t.integer  "category_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "password"
-    t.boolean  "admin"
+    t.boolean  "admin", :default => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

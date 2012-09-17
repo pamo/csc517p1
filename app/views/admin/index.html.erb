@@ -1,19 +1,2 @@
-<h1>Welcome admin</h1>
-
-
-<p>See the list of users with their credentials   </p>
-<br>
-<p> Assign the role of admin to users who have an account but no admin rights   </p>
-<br>
-<p>  Revoke the role of admin from other admins     </p>
-<br>
-<p> Create new categories for posts          </p>
-<br>
-<p>Delete existing categories          </p>
-<br>
-<p>Delete posts/comments          </p>
-<br>
-<p> Delete users              </p>
-<br>
-<p> View reports on post activity, including number of votes for each post such that it is possible to use this report to assign grades    </p>
-
+<h1>Welcome <%= current_user.name %></h1>
+<p>Congrats, you're an admin!</p>

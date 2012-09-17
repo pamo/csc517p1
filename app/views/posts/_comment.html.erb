@@ -1,6 +1,5 @@
-<div class="comment">
-  <i><%=h comment.username %> says:</i> <%= simple_format h(comment.body) %> with <%= comment.votes %> votes
+
+  <div><b><%= comment.username %></b> says: <%= comment.body %> (<%= comment.votes %> votes) </div>
   <%#= link_to 'Destroy Comment', comment,
               :confirm => 'Are you sure?',
               :method => :delete %>
-</div>

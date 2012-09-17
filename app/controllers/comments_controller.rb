@@ -83,4 +83,19 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def vote
+    @comment = Post.find(params[:id])
+    @comment.votes += 1
+
+    respond_to do |format|
+      if @comment.update_attributes(params[:comment])
+        format.html { redirect_to @comment, notice: "Your vote was cast" }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @comment, notice: "Your cannot vote for this post" }
+        format.json { render json: @comment }
+      end
+    end
+  end
 end

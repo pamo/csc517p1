@@ -22,7 +22,7 @@
 
 <p>
   <b>Votes:</b>
-  <%= @post.votes %>
+  <%= @post.votes %> [<%= link_to "vote", :controller => :posts, :action => :vote %>]
 </p>
 <!--TODO add an admin check-->
 <% if(current_user == @post.username) %>

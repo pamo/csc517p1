@@ -8,9 +8,19 @@ Csc517p1::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  resources :posts
+  resources :posts do
+    member do
+      put "vote"
+      get "vote"
+    end
+  end
   resources :categories
-  resources :comments
+  resources :comments do
+    member do
+      put "vote"
+      get "vote"
+    end
+  end
   resources :users #, :users => {:search => :get}
   resources :searches
 

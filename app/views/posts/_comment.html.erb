@@ -5,7 +5,7 @@
          <%= link_to "Edit", edit_comment_path(comment) %> |
         <%= link_to "Delete", comment, method: :delete, data: { confirm: 'Are you sure?' } %> |
     <% end %>
-    <%= link_to "Vote", :controller => :comments, :action => :vote %> ]
+    <%= link_to "Vote", :controller => :comments, :action => :vote, :id => comment.id %> ]
   </div>
   <%#= link_to 'Destroy Comment', comment,
               :confirm => 'Are you sure?',

@@ -82,4 +82,20 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def search
+    if params[:search_item]
+      @comments = Comment.search (params[:search_item])
+    else
+      @comments = []
+
+      respond_to do |format|
+        format.html
+        format.xml  {render xml: @users}
+      end
+    end
+
+  end
+
+
 end

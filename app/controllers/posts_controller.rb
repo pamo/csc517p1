@@ -90,4 +90,19 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def search
+    if params[:search_item]
+      @posts = Post.search (params[:search_item])
+    else
+      @posts = []
+
+      respond_to do |format|
+        format.html
+        format.xml  {render xml: @users}
+      end
+    end
+
+  end
+
 end

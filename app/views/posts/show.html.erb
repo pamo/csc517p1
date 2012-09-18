@@ -1,17 +1,21 @@
 <p id="notice"><%= notice %></p>
 <h3><%= @post.username %> posted a <i><%= @post.category.name %></i>:</h3>
 <p><%= @post.content %></p>
-
+<% @voters = Vote.find_all_by_pid(@post.id) %>
+<% @voters.each do | voter | %>
+    <%= User.find(voter.uid).name %>
+<% end %>
 <% if Vote.find_by_uid_and_pid(session[:user_id], @post.id) %>
     You and <%= @post.votes %> other people voted
 <% else %>
     <%= @post.votes %> people voted
 <% end %>
-[<%= link_to "vote", :controller => :posts, :action => :vote %>]
-
+[ <%= link_to "Vote", :controller => :posts, :action => :vote %>
 <% if logged_in? && ((@post.username == current_user.name) || current_user.admin) %>
     <%= link_to 'Edit your post', edit_post_path(@post) %> |
 <% end %>
+]
+
 
 <h3><%= @post.comments.count %> Comments</h3>
 <%= render :partial => 'comment', :collection => @post.comments %>

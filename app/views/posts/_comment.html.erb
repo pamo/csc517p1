@@ -1,5 +1,14 @@
-
-  <div><b><%= comment.username %></b> says: <%= comment.body %> (<%= comment.votes %> votes)
+<% @comment_voters = Vote.find_all_by_cid(comment.id) %>
+<% @comment_voters.each do | voter | %>
+    <%= User.find(voter.uid).name %>
+<% end %>
+  <div><b><%= comment.username %></b> says: <%= comment.body %>
+    (<% if Vote.find_by_uid_and_cid(session[:user_id], comment.id) %>
+        You and <%= comment.votes %> other people voted
+    <% else %>
+        <%= comment.votes %> people voted
+    <% end %>)
+    <br>
     [
     <% if logged_in? && ((comment.username == current_user.name) || current_user.admin) %>
          <%= link_to "Edit", edit_comment_path(comment) %> |
@@ -7,6 +16,4 @@
     <% end %>
     <%= link_to "Vote", :controller => :comments, :action => :vote, :id => comment.id %> ]
   </div>
-  <%#= link_to 'Destroy Comment', comment,
-              :confirm => 'Are you sure?',
-              :method => :delete %>
+

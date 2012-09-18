@@ -46,4 +46,20 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_redirected_to posts_path
   end
+
+  # Validation tests
+  test "should not save post without content" do
+    post = Post.new
+    assert !post.save, "Saved the post without content"
+  end
+
+  test "should not save post without category" do
+    post = Post.new
+    assert !post.save, "Saved the post without category"
+  end
+
+  test "should not save post without username" do
+    post = Post.new
+    assert !post.save, "Saved the post without username"
+  end
 end

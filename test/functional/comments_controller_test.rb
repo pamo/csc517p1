@@ -35,7 +35,7 @@ class CommentsControllerTest < ActionController::TestCase
   end
 
   test "should update comment" do
-    put :update, id: @comment, comment: { body: @comment.body, postid: @comment.postid, username: @comment.username, votes: @comment.votes }
+    put :update, id: @comment, comment: { body: @comment.body, post_id: @comment.post_id, username: @comment.username, votes: @comment.votes }
     assert_redirected_to comment_path(assigns(:comment))
   end
 
@@ -46,4 +46,5 @@ class CommentsControllerTest < ActionController::TestCase
 
     assert_redirected_to comments_path
   end
+
 end

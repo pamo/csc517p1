@@ -106,21 +106,20 @@ class PostsController < ApplicationController
   end
 
   # TODO Add restrictions for multiple voting on post
-  # TODO Add restrictions for self voting on post
 
   def vote
     @post = Post.find(params[:id])
-    @post.votes += 1
-
-    respond_to do |format|
-      if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: "Your vote was cast" }
-        format.json { head :no_content }
-      else
+    if not_current_user?(@post.username)
+      @post.votes += 1
+      respond_to do |format|
+        if @post.update_attributes(params[:post])
+          format.html { redirect_to @post, notice: "Your vote was cast" }
+        end
+      end
+    else
+      respond_to do |format|
         format.html { redirect_to @post, notice: "Your cannot vote for this post" }
-        format.json { render json: @post }
       end
     end
   end
-
 end

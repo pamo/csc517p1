@@ -100,22 +100,24 @@ class CommentsController < ApplicationController
   end
 
   # TODO Add restrictions for multiple voting on comment
-  # TODO Add restrictions for self voting on comment
   def vote
       @comment = Comment.find(params[:id])
-    #  if not_current_user?(@comment.username)
+      if not_current_user?(@comment.username)
           @comment.votes += 1
 
         respond_to do |format|
           if @comment.update_attributes(params[:comment])
             format.html { redirect_to post_path(@comment.post_id), notice: "Your vote was cast" }
             format.json { head :no_content }
-          else
-            format.html { redirect_to @comment, notice: "Your cannot vote for this comment" }
-            format.json { render json: @comment }
           end
         end
-    #end
+      else
+        respond_to do |format|
+
+            format.html { redirect_to post_path(@comment.post_id), notice: "Your cannot vote for this comment" }
+
+        end
+    end
   end
 
 end

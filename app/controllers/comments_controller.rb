@@ -103,21 +103,27 @@ class CommentsController < ApplicationController
   def vote
       @comment = Comment.find(params[:id])
       if not_current_user?(@comment.username)
-          @comment.votes += 1
-
+        if Vote.find_by_uid_and_cid(session[:user_id], @comment.id)
+          respond_to do |format|
+            format.html { redirect_to post_path(@comment.post_id), notice: "Your have already voted for this comment" }
+          end
+      else
+        @comment.votes += 1
+        @vote = Vote.new
+        @vote.uid = session[:user_id]
+        @vote.cid = @comment.id
         respond_to do |format|
-          if @comment.update_attributes(params[:comment])
+          if (@comment.update_attributes(params[:comment]) && @vote.save)
             format.html { redirect_to post_path(@comment.post_id), notice: "Your vote was cast" }
             format.json { head :no_content }
           end
         end
+        end
       else
         respond_to do |format|
-
             format.html { redirect_to post_path(@comment.post_id), notice: "Your cannot vote for this comment" }
-
         end
-    end
+        end
   end
 
 end

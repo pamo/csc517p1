@@ -110,10 +110,20 @@ class PostsController < ApplicationController
   def vote
     @post = Post.find(params[:id])
     if not_current_user?(@post.username)
-      @post.votes += 1
-      respond_to do |format|
-        if @post.update_attributes(params[:post])
-          format.html { redirect_to @post, notice: "Your vote was cast" }
+      if Vote.find_by_uid_and_pid(session[:user_id], @post.id)
+        respond_to do |format|
+          format.html { redirect_to @post, notice: "Your have already voted for this comment" }
+        end
+      else
+        @post.votes += 1
+        @vote = Vote.new
+        @vote.uid = session[:user_id]
+        @vote.pid = @post.id
+
+        respond_to do |format|
+          if @post.update_attributes(params[:post]) && @vote.save
+            format.html { redirect_to @post, notice: "Your vote was cast" }
+          end
         end
       end
     else

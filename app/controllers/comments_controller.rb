@@ -99,7 +99,6 @@ class CommentsController < ApplicationController
 
   end
 
-  # TODO Add restrictions for multiple voting on comment
   def vote
       @comment = Comment.find(params[:id])
       if not_current_user?(@comment.username)
@@ -112,8 +111,9 @@ class CommentsController < ApplicationController
         @vote = Vote.new
         @vote.uid = session[:user_id]
         @vote.cid = @comment.id
+
         respond_to do |format|
-          if (@comment.update_attributes(params[:comment]) && @vote.save)
+          if @comment.update_attributes(params[:comment]) && @vote.save
             format.html { redirect_to post_path(@comment.post_id), notice: "Your vote was cast" }
             format.json { head :no_content }
           end
@@ -123,7 +123,7 @@ class CommentsController < ApplicationController
         respond_to do |format|
             format.html { redirect_to post_path(@comment.post_id), notice: "Your cannot vote for this comment" }
         end
-        end
+      end
   end
 
 end

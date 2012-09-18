@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  username: MyString
-  content: MyText
-  category: MyString
-  votes: 1
+  username: Admin
+  content: Hello World!
+  category_id: 1
+  votes: 5
 
 two:
-  username: MyString
-  content: MyText
-  category: MyString
+  username: Pam
+  content: Goodbye World!
+  category_id: 2
   votes: 1

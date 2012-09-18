@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  username: MyString
-  postid: 1
-  body: MyText
-  votes: 1
+  username: Pam
+  post_id: 1
+  body: Goodbye!
+  votes: 10
 
 two:
-  username: MyString
-  postid: 1
-  body: MyText
-  votes: 1
+  username: Admin
+  post_id: 2
+  body: Don't go!
+  votes: 0

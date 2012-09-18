@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :authorize
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :not_current_user?
 
   def logged_in?
     current_user != nil
@@ -21,5 +21,9 @@ class ApplicationController < ActionController::Base
     unless logged_in? && current_user.admin
       redirect_to home_url, :alert => "Please log in as admin"
     end
+  end
+
+  def not_current_user?(user)
+    current_user.name != user
   end
 end

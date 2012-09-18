@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-
+  skip_before_filter :authorize
   # GET /searches
   # GET /searches.json
   def index

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_filter :authorize, :only => [:index, :show]
+  skip_before_filter :authorize, :only => [:index, :show, :search]
 
   # belongs_to :user
   # GET /posts
@@ -91,9 +91,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # TODO Add restrictions for multiple voting on post
-  # TODO Add restrictions for self voting on post
-
   def search
     if params[:search_item]
       @posts = Post.search (params[:search_item])
@@ -107,6 +104,9 @@ class PostsController < ApplicationController
     end
 
   end
+
+  # TODO Add restrictions for multiple voting on post
+  # TODO Add restrictions for self voting on post
 
   def vote
     @post = Post.find(params[:id])

@@ -1,34 +1,19 @@
 <p id="notice"><%= notice %></p>
+<h3><%= @post.username %> posted a <i><%= @post.category.name %></i>:</h3>
+<p><%= @post.content %></p>
 
-<p>
-  <b>ID:</b>
-  <%= @post.id %>
-</p>
-
-<p>
-  <b>Username:</b>
-  <%= @post.username %>
-</p>
-
-<p>
-  <b>Content:</b>
-  <%= @post.content %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= @post.category.name %>
-</p>
-
-<p>
-  <b>Votes:</b>
-  <%= @post.votes %> [<%= link_to "vote", :controller => :posts, :action => :vote %>]
-</p>
-<% if logged_in? && ((@post.username == current_user.name) || current_user.admin) %>
-    <%= link_to 'Edit', edit_post_path(@post) %> |
+<% if Vote.find_by_uid_and_pid(session[:user_id], @post.id) %>
+    You and <%= @post.votes %> other people voted
+<% else %>
+    <%= @post.votes %> people voted
 <% end %>
-<%= link_to 'Back', posts_path %>
-<h3>Comments</h3>
+[<%= link_to "vote", :controller => :posts, :action => :vote %>]
+
+<% if logged_in? && ((@post.username == current_user.name) || current_user.admin) %>
+    <%= link_to 'Edit your post', edit_post_path(@post) %> |
+<% end %>
+
+<h3><%= @post.comments.count %> Comments</h3>
 <%= render :partial => 'comment', :collection => @post.comments %>
 <% if logged_in? %>
 <hr>
@@ -55,5 +40,7 @@
     <div class="actions">
       <%= f.submit "Post Comment" %>
     </div>
-<% end %>
+    <%= link_to 'Back', posts_path %>
+
+    <% end %>
 <% end %>

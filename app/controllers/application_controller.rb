@@ -24,9 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def not_current_user?(user)
-    puts "in not..."
-    puts current_user.name
-    puts user
     current_user.name != user
   end
 end

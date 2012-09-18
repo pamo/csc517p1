@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
   skip_before_filter :authorize, :only => [:index, :show, :search]
 
-  # belongs_to :user
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all()
     @posts = Post.order('updated_at desc')
-
 
     respond_to do |format|
       format.html # index.html.erb
@@ -105,14 +103,12 @@ class PostsController < ApplicationController
 
   end
 
-  # TODO Add restrictions for multiple voting on post
-
   def vote
     @post = Post.find(params[:id])
     if not_current_user?(@post.username)
       if Vote.find_by_uid_and_pid(session[:user_id], @post.id)
         respond_to do |format|
-          format.html { redirect_to @post, notice: "Your have already voted for this comment" }
+          format.html { redirect_to @post, notice: "Your have already voted for this post" }
         end
       else
         @post.votes += 1

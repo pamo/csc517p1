@@ -4,6 +4,7 @@ one:
   username: Admin
   content: Hello World!
   category_id: 1
+  id: 1
   votes: 5
 
 two:
@@ -11,3 +12,4 @@ two:
   content: Goodbye World!
   category_id: 2
   votes: 1
+  id: 2

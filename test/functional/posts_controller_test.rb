@@ -3,6 +3,12 @@ require 'test_helper'
 class PostsControllerTest < ActionController::TestCase
   setup do
     @post = posts(:one)
+    @update = {
+        :category_id => 1,
+        :content => 'Message',
+        :username => 'Admin',
+        :votes => 3
+    }
   end
 
   test "should get index" do
@@ -35,7 +41,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should update post" do
-    put :update, id: @post, post: { category: @post.category, content: @post.content, username: @post.username, votes: @post.votes }
+    put :update, :id => @post.to_param, :post => @update
     assert_redirected_to post_path(assigns(:post))
   end
 

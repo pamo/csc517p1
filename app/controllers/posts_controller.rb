@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
   skip_before_filter :authorize, :only => [:index, :show, :search]
 
-  # belongs_to :user
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all()
     @posts = Post.order('updated_at desc')
-
 
     respond_to do |format|
       format.html # index.html.erb
@@ -105,22 +103,29 @@ class PostsController < ApplicationController
 
   end
 
-  # TODO Add restrictions for multiple voting on post
-  # TODO Add restrictions for self voting on post
-
   def vote
     @post = Post.find(params[:id])
-    @post.votes += 1
-
-    respond_to do |format|
-      if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: "Your vote was cast" }
-        format.json { head :no_content }
+    if not_current_user?(@post.username)
+      if Vote.find_by_uid_and_pid(session[:user_id], @post.id)
+        respond_to do |format|
+          format.html { redirect_to @post, notice: "Your have already voted for this post" }
+        end
       else
+        @post.votes += 1
+        @vote = Vote.new
+        @vote.uid = session[:user_id]
+        @vote.pid = @post.id
+
+        respond_to do |format|
+          if @post.update_attributes(params[:post]) && @vote.save
+            format.html { redirect_to @post, notice: "Your vote was cast" }
+          end
+        end
+      end
+    else
+      respond_to do |format|
         format.html { redirect_to @post, notice: "Your cannot vote for this post" }
-        format.json { render json: @post }
       end
     end
   end
-
 end

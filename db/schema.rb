@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120915201238) do
+ActiveRecord::Schema.define(:version => 20120918174938) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(:version => 20120915201238) do
     t.boolean  "admin",      :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "uid"
+    t.integer  "pid"
+    t.integer  "cid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

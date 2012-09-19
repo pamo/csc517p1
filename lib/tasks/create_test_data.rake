@@ -41,9 +41,9 @@ namespace :db do
                     :body => "content body",
                     :post_id => "1",
                     :votes => 0)
-    5.times do |n|
+    20.times do |n|
       username = User.find_by_id(rand(20)).name
-      body = Faker::Lorem.sentences(3)
+      body = Faker::Lorem.sentences(2)
       post_id = rand(5)
       votes = 0
       Comment.create!(:username => username,

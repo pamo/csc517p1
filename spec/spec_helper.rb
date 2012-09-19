@@ -4,6 +4,27 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+namespace :db do
+  desc "Fill database with sample data"
+  task :populate => :environment do
+    Rake::Task['db:reset'].invoke
+    User.create!(:name => "Example User",
+                 :password => "example@railstutorial.org",
+                 :password_confirmation => "foobar",
+                 :admin => false)
+    99.times do |n|
+      name  = Faker::Name.name
+      email = "example-#{n+1}@railstutorial.org"
+      password  = "password"
+      User.create!(:name => name,
+                   :email => email,
+                   :password => password,
+                   :password_confirmation => password)
+    end
+  end
+end
+
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}

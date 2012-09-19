@@ -1,15 +1,13 @@
 require_relative '../spec_helper'
-require_relative '../helpers/post_helper'
+#require_relative '../helpers/post_helper'
 
-describe PostsController do
+  describe Posts Object do
 
-  define "Post" do
     before(:each) do
       @post = Post.new :content => "Content", :username => "Username"
       @update = @post.update :content => "More Content"
       @destroy = @post.destroy
     end
-  end
 
   describe "GET Index" do
     it "gets the index view" do
@@ -87,6 +85,6 @@ describe PostsController do
     assert !post.save, "Saved the post without username"
   end
 
+  end
 
 
-end

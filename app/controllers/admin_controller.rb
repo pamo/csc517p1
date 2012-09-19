@@ -13,6 +13,7 @@ class AdminController < ApplicationController
     @count_admin_comments = 0
     @admin_post_comment_count = 0
     @admin_post_vote_count = 0
+    @admin_comment_vote_count = 0
 
     respond_to do |format|
       format.html # index.html.erb

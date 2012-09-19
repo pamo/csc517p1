@@ -18,7 +18,10 @@ User.create(name:'Pam', password: 'pam', admin: true)
 User.create(name:'Bot', password: 'bot', admin: false)
 
 Post.delete_all
-Post.create(id: '1', username: 'Admin', content:'test post by admin', votes: '3', category_id: '1')
+Post.create(id: '1', username: 'Admin', content:'Test post by admin', votes: '0', category_id: '1')
+Post.create(id: '2', username: 'Bot', content:'Scooby Dooby doo!', votes: '0', category_id: '3')
+Post.create(id: '3', username: 'Admin', content:'I can edit this post', votes: '0', category_id: '2')
+Post.create(id: '1', username: 'Pam', content:'Today is Wednesday', votes: '0', category_id: '1')
 
 Comment.delete_all
-Comment.create(post_id: '1', username: 'Mary', body: 'This is really funny!', votes: '1')
+Comment.create(post_id: '1', username: 'Mary', body: 'This is really funny!', votes: '0')

@@ -5,7 +5,7 @@ Back Channel App for CSC 517
 
 Individuals working on this project
     1. Pamela Ocampo       pmocampo@ncsu.edu
-    2. Britanny Johnson    bijohnso@ncsu.edu
+    2. Brittany Johnson    bijohnso@ncsu.edu
 
 Test framework
     RSpec

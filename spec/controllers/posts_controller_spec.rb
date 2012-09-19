@@ -1,13 +1,16 @@
 require_relative '../spec_helper'
+
 #require_relative '../helpers/post_helper'
 
   describe Posts Object do
 
+=begin
     before(:each) do
       @post = Post.new :content => "Content", :username => "Username"
       @update = @post.update :content => "More Content"
       @destroy = @post.destroy
     end
+=end
 
   describe "GET Index" do
     it "gets the index view" do

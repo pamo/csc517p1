@@ -1,29 +1,9 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
+Rake::Task['create_test_data'].invoke
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'faker'
-
-namespace :db do
-  desc "Fill database with sample data"
-  task :populate => :environment do
-    Rake::Task['db:reset'].invoke
-    User.create!(:name => "Test User",
-                 :password => "foobar",
-                 :password_confirmation => "foobar",
-                 :admin => false)
-    99.times do |n|
-      name  = Faker::Name.name
-      email = "example-#{n+1}@railstutorial.org"
-      password  = "password"
-      User.create!(:name => name,
-                   :email => email,
-                   :password => password,
-                   :password_confirmation => password)
-    end
-  end
-end
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,

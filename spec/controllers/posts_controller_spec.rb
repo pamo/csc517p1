@@ -1,13 +1,16 @@
-require_relative '../helpers/spec_helper'
+require_relative '../spec_helper'
 require_relative '../helpers/post_helper'
 
-define "Post" do
-  before(:each) do
-    @post = Post.new "Content", "Username"
-  end
-end
-
 describe PostsController do
+
+  define "Post" do
+    before(:each) do
+      @post = Post.new :content => "Content", :username => "Username"
+      @update = @post.update :content => "More Content"
+      @destroy = @post.destroy
+    end
+  end
+
   describe "GET Index" do
     it "gets the index view" do
       get "index"
@@ -44,7 +47,45 @@ describe PostsController do
     end
   end
 
+  describe "#edit" do
+    it "edits the post object" do
+      get "edit"
+      response.should eql :success
+    end
+  end
 
+  describe "#update" do
+    it "updates the post object" do
+      put "update"
+      @update.content.should eql 'More Content'
+      flash[:notice].should_not be_nil
+    end
+  end
+
+  describe "#destroy" do
+    it "destroys the post object" do
+      get "destroy"
+      @destroy.should eql nil
+    end
+  end
+
+
+  #Validation Tests
+
+  describe "should not save post with no content" do
+    post = Post.new
+    assert !post.save, "Saved post without content"
+  end
+
+  describe "should not save post without category" do
+    post = Post.new
+    assert !post.save, "Saved the post without category"
+  end
+
+  describe "should not save post without username" do
+    post = Post.new
+    assert !post.save, "Saved the post without username"
+  end
 
 
 

@@ -29,7 +29,7 @@ namespace :db do
     5.times do |n|
       username = User.find_by_id(rand(20)).name
       content = Faker::Lorem.sentences(3)
-      category_id = rand(5)
+      category_id = rand(1...5)
       votes = 0
       Post.create!(:username => username,
                    :content => content,

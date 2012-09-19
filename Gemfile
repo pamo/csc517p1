@@ -27,6 +27,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'autotest'
   gem 'autotest-standalone'
+  gem 'faker'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -47,5 +48,5 @@ group :test do
   gem 'test-unit', '2.4.0'
   gem 'memory_test_fix' #patches rails test to load db, keep it in memory
   gem 'turn', :require=> false
-  gem 'capybara'
+  gem 'faker'
 end

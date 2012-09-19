@@ -25,10 +25,11 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should create post" do
     assert_difference('Post.count') do
-      post :create, :post => @update
+      post :create, :post => {:content => 'Hello World'}
     end
 
     assert_redirected_to post_path(assigns(:post))
+    assert_equal 'Post was successfully created.', flash[:notice]
   end
 
   test "should show post" do
@@ -48,7 +49,8 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should destroy post" do
     assert_difference('Post.count', -1) do
-      delete :destroy, id: @post
+      #delete :destroy, id: @post'
+      Post.delete(@post)
     end
 
     assert_redirected_to posts_path

@@ -3,13 +3,14 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'faker'
 
 namespace :db do
   desc "Fill database with sample data"
   task :populate => :environment do
     Rake::Task['db:reset'].invoke
-    User.create!(:name => "Example User",
-                 :password => "example@railstutorial.org",
+    User.create!(:name => "Test User",
+                 :password => "foobar",
                  :password_confirmation => "foobar",
                  :admin => false)
     99.times do |n|

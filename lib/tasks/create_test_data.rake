@@ -1,12 +1,7 @@
 namespace :db do
   desc "Fill database with sample data"
-
-  task :fake_user_data => :environment do
-    require 'faker'
-
-  task :populate => :environment do
-    Rake::Task['db:reset'].invoke
-    User.create!(:name => "Test User",
+  task populate: :environment do
+    User.create!(:name => "User",
                  :password => "foobar",
                  :password_confirmation => "foobar",
                  :admin => false)
@@ -29,34 +24,32 @@ namespace :db do
 
     Post.create!(:username =>"Test User",
                  :content => "content body",
-                 :category => "Category",
+                 :category_id => "1",
                  :votes => 0)
     5.times do |n|
       username = User.find_by_id(rand(20)).name
       content = Faker::Lorem.sentences(3)
-      category = Category.find_by_id(rand(5)).name
+      category_id = rand(5)
       votes = 0
       Post.create!(:username => username,
                    :content => content,
-                   :category => category,
+                   :category_id => category_id,
                    :votes => votes)
     end
 
     Comment.create!(:username =>"Test User",
-                 :body => "content body",
-                 :post_id => "1",
-                 :votes => 0)
+                    :body => "content body",
+                    :post_id => "1",
+                    :votes => 0)
     5.times do |n|
       username = User.find_by_id(rand(20)).name
       body = Faker::Lorem.sentences(3)
       post_id = rand(5)
       votes = 0
-      Post.create!(:username => username,
+      Comment.create!(:username => username,
                    :body => body,
                    :post_id => post_id,
                    :votes => votes)
-    end
-
     end
   end
 end

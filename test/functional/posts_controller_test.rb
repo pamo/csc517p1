@@ -7,7 +7,7 @@ class PostsControllerTest < ActionController::TestCase
         :category_id => 3,
         :content => 'Message',
         :username => 'Admin',
-        :votes => 3,
+        :votes => 0,
         :id => 3
     }
   end

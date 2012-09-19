@@ -97,7 +97,7 @@ class PostsController < ApplicationController
 
       respond_to do |format|
         format.html
-        format.xml  {render xml: @users}
+        format.xml  {render xml: @posts}
       end
     end
 

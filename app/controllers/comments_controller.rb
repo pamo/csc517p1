@@ -126,4 +126,17 @@ class CommentsController < ApplicationController
       end
   end
 
+  def show_who
+    @comment = Comment.find(params[:id])
+    @votes = Vote.find_all_by_cid(@comment.id)
+    @voters = []
+    @votes.each { | v | @voters << User.find_by_id(v.uid).name }
+
+    respond_to do |format|
+      if @votes.count
+        format.html {redirect_to post_path(@comment.post_id), :flash => { :comment_voters => @voters.to_sentence} }
+      end
+    end
+  end
+
 end

@@ -1,20 +1,26 @@
 <p id="notice"><%= notice %></p>
 <h3><%= @post.username %> posted a <i><%= @post.category.name %></i>:</h3>
-<p><%= @post.content %></p>
-<% @voters = Vote.find_all_by_pid(@post.id) %>
-<% @voters.each do | voter | %>
-    <%= User.find(voter.uid).name %>
-<% end %>
-<% if Vote.find_by_uid_and_pid(session[:user_id], @post.id) %>
-    You and <%= @post.votes %> other people voted
-<% else %>
-    <%= @post.votes %> people voted
-<% end %>
-[ <%= link_to "Vote", :controller => :posts, :action => :vote %>
 <% if logged_in? && ((@post.username == current_user.name) || current_user.admin) %>
-    <%= link_to 'Edit your post', edit_post_path(@post) %> |
+    [ <%= link_to 'Edit your post', edit_post_path(@post) %> ]
 <% end %>
-]
+<p><%= @post.content %></p>
+<% if @post.votes <= 0 %>
+    No one has voted
+<% else %>
+    <% if flash[:voters] %>
+          <%= flash[:voters] %> voted
+    <% elsif Vote.find_by_uid_and_pid(session[:user_id], @post.id) %>
+            <% if @post.votes == 1 %>
+                <%= link_to "You voted", :controller => :posts, :action => :show_who  %>
+            <% else %>
+                <%= link_to "You and #{@post.votes-1} other people voted", :controller => :posts, :action => :show_who  %>
+            <% end %>
+    <% else %>
+        <%= link_to "#{@post.votes} people voted", :controller => :posts, :action => :show_who  %>
+    <% end %>
+<% end %>
+( <%= link_to "Vote", :controller => :posts, :action => :vote %> )
+
 
 
 <h3><%= @post.comments.count %> Comments</h3>

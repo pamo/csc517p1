@@ -1,19 +1,25 @@
-<% @comment_voters = Vote.find_all_by_cid(comment.id) %>
-<% @comment_voters.each do | voter | %>
-    <%= User.find(voter.uid).name %>
-<% end %>
+
   <div><b><%= comment.username %></b> says: <%= comment.body %>
-    (<% if Vote.find_by_uid_and_cid(session[:user_id], comment.id) %>
-        You and <%= comment.votes %> other people voted
+    <% if comment.votes <= 0 %>
+        No one has voted
     <% else %>
-        <%= comment.votes %> people voted
-    <% end %>)
-    <br>
-    [
-    <% if logged_in? && ((comment.username == current_user.name) || current_user.admin) %>
-         <%= link_to "Edit", edit_comment_path(comment) %> |
-        <%= link_to "Delete", comment, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <% if flash[:comment_voters] %>
+            <%= flash[:comment_voters] %> voted
+        <% elsif Vote.find_by_uid_and_cid(session[:user_id], comment.id) %>
+            <% if comment.votes == 1 %>
+                <%= link_to "You voted", :controller => :comments, :action => :show_who, :id => comment.id  %>
+            <% else %>
+                <%= link_to "You and #{comment.votes-1} other people voted", :controller => :comments, :action => :show_who, :id => comment.id  %>
+            <% end %>
+        <% else %>
+            <%= link_to "#{comment.votes} people voted", :controller => :comments, :action => :show_who, :id => comment.id  %>
+        <% end %>
     <% end %>
-    <%= link_to "Vote", :controller => :comments, :action => :vote, :id => comment.id %> ]
+    ( <%= link_to "Vote", :controller => :comments, :action => :vote, :id => comment.id %> )
+
+    <% if logged_in? && ((comment.username == current_user.name) || current_user.admin) %>
+        [     <%= link_to "Edit", edit_comment_path(comment) %> |
+        <%= link_to "Delete", comment, method: :delete, data: { confirm: 'Are you sure?' } %> ]
+    <% end %>
   </div>
 

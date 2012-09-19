@@ -12,6 +12,7 @@ Csc517p1::Application.routes.draw do
     member do
       put "vote"
       get "vote"
+      get "show_who"
     end
   end
   resources :categories
@@ -19,6 +20,7 @@ Csc517p1::Application.routes.draw do
     member do
       put "vote"
       get "vote"
+      get "show_who"
     end
   end
   resources :users #, :users => {:search => :get}

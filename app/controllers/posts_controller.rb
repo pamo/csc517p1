@@ -128,4 +128,17 @@ class PostsController < ApplicationController
       end
     end
   end
+
+  def show_who
+    @post = Post.find(params[:id])
+    @votes = Vote.find_all_by_pid(@post.id)
+    @voters = []
+    @votes.each { | v | @voters << User.find_by_id(v.uid).name }
+
+    respond_to do |format|
+      if @votes.count
+        format.html {redirect_to @post, :flash => { :voters => @voters.to_sentence} }
+      end
+    end
+  end
 end

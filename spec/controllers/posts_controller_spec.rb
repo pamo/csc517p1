@@ -1,6 +1,12 @@
 require_relative '../helpers/spec_helper'
 require_relative '../helpers/post_helper'
 
+define "Post" do
+  before(:each) do
+    @post = Post.new "Content", "Username"
+  end
+end
+
 describe PostsController do
   describe "GET Index" do
     it "gets the index view" do
@@ -15,7 +21,7 @@ describe PostsController do
   end
 
   describe "GET New" do
-    it "creates new post" do
+    it "gets the new view" do
       get "new"
       response.status.should be 200
     end
@@ -23,6 +29,22 @@ describe PostsController do
     it "gets the correct new post view template"
     response.should render_template("posts/new")
   end
+
+  describe "#create" do
+    it "creates a new post object" do
+      @post.should be_an_instance_of Post
+      flash[:notice].should_not be_nil
+    end
+  end
+
+  describe "#show" do
+    it "shows the post object" do
+      get "show"
+      response.should eql :success
+    end
+  end
+
+
 
 
 

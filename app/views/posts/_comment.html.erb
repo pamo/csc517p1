@@ -1,6 +1,6 @@
 
   <div><b><%= comment.username %></b> says: <%= comment.body %>
-    <% if comment.votes <= 0 %>
+    <% if comment.votes = 0 %>
         No one has voted
     <% else %>
         <% if flash[:comment_voters] %>

@@ -2,23 +2,23 @@
 
 <h2> Admin Report </h2>
 
-<p>
-
 <table>
-      <b>All Users</b>
-      <ul>
-        <% @users.each do |user| %>
-            <li><%= user.name %></li>
-        <% end %>
-      </ul>  <br/>
 
-      <b>Total Number of Posts (by all Users) = </b> <%= @post_count %>  <br/><br/>
-      <b>Total Number of Posts (by Admin) = </b> <%= @count_admin_posts %>  <br/><br/>
-      <b>Total Number of Comments (by all Users) = </b> <%= @post_comment_count %>  <br/><br/>
-      <b>Total Number of Comments (by Admin) = </b> <%= @count_admin_comments %>  <br/><br/>
-      <b>Total Number of Votes  = </b> <%= @post_vote_count %>    <br/><br/> <br/>
-
+  <tr>
+    <th>User</th>
+    <th>Posts</th>
+    <th>Post Votes Received</th>
+    <th>Comments</th>
+    <th>Comment Votes Received</th>
+  </tr>
+  <% @users.each do |u| %>
+  <tr>
+    <td><%= u.name %></td>
+    <td><%= Post.find_all_by_username(u.name).count %></td>
+    <td><%= post_votes(u.name) %></td>
+    <td><%= Comment.find_all_by_username(u.name).count %></td>
+    <td><%= comment_votes(u.name) %></td>
+  </tr>
+ <% end %>
 </table>
 
-
-</p>

@@ -51,7 +51,7 @@ require 'spec_helper'
     it "updates the post object" do
       put "update"
       @update = FactoryGirl(:post)
-
+      @update.update 'More Content'
       @update.content.should eql 'More Content'
       flash[:notice].should_not be_nil
     end
@@ -60,6 +60,8 @@ require 'spec_helper'
   describe "#destroy" do
     it "destroys the post object" do
       get "destroy"
+      @destroy = FactoryGirl(:post)
+      @destroy.destroy
       @destroy.should eql nil
     end
   end

@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 
 describe UsersController do
@@ -24,5 +24,7 @@ describe UsersController do
     response.should render_template("users/new")
   end
 
-  describe "#create"
+  describe "#create" do
+    @user = Factory(:user)
+  end
 end

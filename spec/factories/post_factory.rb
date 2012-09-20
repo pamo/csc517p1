@@ -1,4 +1,4 @@
-Factory.define do
+FactoryGirl.define do
   factory :post do
     user
     content   "Hello World"

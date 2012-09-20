@@ -1,4 +1,4 @@
-Factory.define do
+FactoryGirl.define do
   factory :comment do
     user
     body   "Goodbye World"

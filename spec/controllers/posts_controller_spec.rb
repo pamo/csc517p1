@@ -1,16 +1,7 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
-#require_relative '../helpers/post_helper'
 
   describe Posts Object do
-
-=begin
-    before(:each) do
-      @post = Post.new :content => "Content", :username => "Username"
-      @update = @post.update :content => "More Content"
-      @destroy = @post.destroy
-    end
-=end
 
   describe "GET Index" do
     it "gets the index view" do
@@ -36,6 +27,7 @@ require_relative '../spec_helper'
 
   describe "#create" do
     it "creates a new post object" do
+      @post = FactoryGirl(:post)
       @post.should be_an_instance_of Post
       flash[:notice].should_not be_nil
     end

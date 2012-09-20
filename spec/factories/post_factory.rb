@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :post do
-    user
+    user    "Admin"
     content   "Hello World"
     category_id  1
-    votes
+    votes   0
 
     factory :posts_with_votes do
       ignore do

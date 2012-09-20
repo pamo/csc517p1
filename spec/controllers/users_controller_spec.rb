@@ -13,4 +13,16 @@ describe UsersController do
       response.should render_template("users/index")
     end
   end
+
+  describe "GET New" do
+    it "gets the new view" do
+      get "new"
+      response.status.should be 200
+    end
+
+    it "gets the correct new post view template"
+    response.should render_template("users/new")
+  end
+
+  describe "#create"
 end

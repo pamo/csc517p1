@@ -50,6 +50,8 @@ require 'spec_helper'
   describe "#update" do
     it "updates the post object" do
       put "update"
+      @update = FactoryGirl(:post)
+
       @update.content.should eql 'More Content'
       flash[:notice].should_not be_nil
     end

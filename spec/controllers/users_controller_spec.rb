@@ -26,5 +26,7 @@ describe UsersController do
 
   describe "#create" do
     @user = Factory(:user)
+    @user.should be_an_instance_of User
+    flash[:notice].should_not be_nil
   end
 end

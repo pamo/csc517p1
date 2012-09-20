@@ -3,7 +3,7 @@
 
 FactoryGirl.define do
   factory :user do
-    user_name "JohnDoe"
+    name "JohnDoe"
     password  "password"
     password_confirmation "password"
     admin false
@@ -11,7 +11,7 @@ FactoryGirl.define do
 
   # This will use the User class (Admin would have been guessed)
   factory :admin, class: User do
-    user_name "Admin"
+    name "Admin"
     password  "admin"
     password_confirmation  "admin"
     admin      true

@@ -1,10 +1,8 @@
-require "rspec"
+require 'spec_helper'
 
-describe "should require a username" do
+describe User do
 
-  it "should do something" do
-
-    #To change this template use File | Settings | File Templates.
-    true.should == false
+  it "should require a username" do
+    FactoryGirl.build(:user, :name => "").should_not be_valid
   end
 end

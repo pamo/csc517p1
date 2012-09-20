@@ -17,10 +17,9 @@ Factory.define do
   end
 
   factory :user do
-    user_name  "JohnDoe"
+    name  "JohnDoe"
 
     factory :user_with_posts do
-
       ignore do
         posts_count  5
       end

@@ -1,4 +1,4 @@
-
+require 'faker'
 
 # This will guess the User class
 

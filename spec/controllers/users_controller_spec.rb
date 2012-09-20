@@ -4,9 +4,12 @@ describe UsersController do
   render_views
 
   describe "GET Index" do
+    user = FactoryGirl.build(:user)
+    login(user)
+
     it "gets the index view" do
-      get "index"
-      response.status.should be 200
+      get :index
+      response.should be_success
     end
 
     it "gets the correct index view template" do

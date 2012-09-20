@@ -16,5 +16,13 @@ FactoryGirl.define do
     password_confirmation  "admin"
     admin      true
   end
+
+  #factory :session_user, class: Session do
+  #  name "JohnDoe"
+  #  password "password"
+  #  password_confirmation "password"
+  #  admin false
+  #end
+
 end
 

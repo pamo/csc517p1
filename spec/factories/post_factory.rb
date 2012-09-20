@@ -16,18 +16,4 @@ FactoryGirl.define do
     end
   end
 
-  factory :user do
-    name  "JohnDoe"
-
-    factory :user_with_posts do
-      ignore do
-        posts_count  5
-      end
-
-      after(:create) do |user, evaluator|
-        FactoryGirl.create_list(:posts, evaluator.posts_count, user: user)
-      end
-
-    end
-  end
 end

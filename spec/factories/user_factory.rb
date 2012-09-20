@@ -18,7 +18,3 @@ FactoryGirl.define do
   end
 end
 
-built_users   = FactoryGirl.build_list(:user, 25)
-created_users = FactoryGirl.create_list(:user, 25)
-built_admins = FactoryGirl.build_list(:admin, 10)
-created_admins = FactoryGirl.create_list(:admin, 10)

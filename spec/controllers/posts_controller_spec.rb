@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-  describe Posts Object do
+  describe PostsController do
 
   describe "GET Index" do
     it "gets the index view" do

@@ -12,7 +12,7 @@ Test framework
 
 Starting URL for the application.
     a. Local    http://localhost:3000
-    b. Remote   http://vcl.ncsu.edu
+    b. Remote   http://152.46.16.94:3000
 
 Command(s) to run to start the app
     None

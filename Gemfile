@@ -29,6 +29,7 @@ group :development, :test do
   gem 'autotest-standalone'
   gem 'faker'
   gem 'factory_girl', '~> 4.1.0'
+  gem 'factory_girl_rails'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

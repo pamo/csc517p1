@@ -50,4 +50,5 @@ group :test do
   gem 'memory_test_fix' #patches rails test to load db, keep it in memory
   gem 'turn', :require=> false
   gem 'faker'
+  gem 'factory_girl', '~> 4.1.0'
 end

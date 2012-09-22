@@ -1,19 +1,21 @@
 require 'spec_helper'
+#require_relative '../../spec/support/spec_test_helper'
 
 describe UsersController do
   render_views
 
   describe "GET Index" do
     user = FactoryGirl.build(:user)
-    login(user)
 
     it "gets the index view" do
+      puts "get index login(#{user.name})"
+      login(user)
       get :index
       response.should be_success
     end
 
     it "gets the correct index view template" do
-      get "index"
+      get :index
       response.should render_template("users/index")
     end
   end

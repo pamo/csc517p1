@@ -4,11 +4,11 @@ module SpecTestHelper
   end
 
   def login(user)
-    user = User.where(:name => user.to_s).first if user.is_a?(Symbol)
-    request.session[:user_id] = user.id
+    puts "spec_test_helper login(#{user.name})"
+    session[:user_id] = user.id
   end
 
   def current_user
-    User.find(request.session[:user_id])
+    User.find(session[:user_id])
   end
 end

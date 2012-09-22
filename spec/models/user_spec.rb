@@ -15,7 +15,7 @@ describe User do
   end
 
   it "should require a unique username" do
-    FactoryGirl.create(:user)
+    #FactoryGirl.create(:user)
     FactoryGirl.build(:user).should_not be_valid
   end
 end

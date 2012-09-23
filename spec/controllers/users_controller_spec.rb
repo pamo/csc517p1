@@ -4,8 +4,20 @@ require 'spec_helper'
 describe UsersController do
   render_views
 
-  describe "GET Index" do
+  before(:each) do
     user = FactoryGirl.build(:user)
+<<<<<<< HEAD
+=======
+  end
+
+  after(:each) do
+    delete :destroy, :id => user
+  end
+
+  describe "GET Index" do
+    #user = FactoryGirl.build(:user)
+    login(user)
+>>>>>>> add before (each) after (each) to user controller spec - not yet working
 
     it "gets the index view" do
       puts "get index login(#{user.name})"

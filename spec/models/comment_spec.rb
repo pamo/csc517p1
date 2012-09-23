@@ -6,7 +6,7 @@ describe Comment do
     FactoryGirl.build(:comment).should be_valid
   end
 
-  it "should update a post" do
+  it "should update a comment" do
     FactoryGirl.create(:comment, :body => "AAAAA").should be_valid
   end
 

@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
-  validates :username, :category, :content, :presence => true
+  validates :username, :category_id, :content, :presence => true
 
   attr_accessible :category_id, :content, :username, :votes
 

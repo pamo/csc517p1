@@ -6,8 +6,7 @@ describe UsersController do
 
   before(:each) do
     user = FactoryGirl.build(:user)
-<<<<<<< HEAD
-=======
+
   end
 
   after(:each) do
@@ -17,7 +16,6 @@ describe UsersController do
   describe "GET Index" do
     #user = FactoryGirl.build(:user)
     login(user)
->>>>>>> add before (each) after (each) to user controller spec - not yet working
 
     it "gets the index view" do
       puts "get index login(#{user.name})"

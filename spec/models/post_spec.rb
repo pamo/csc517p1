@@ -11,7 +11,7 @@ describe Post do
   end
 
   it "should require a category" do
-    FactoryGirl.build(:post, :category => "", ).should_not be_valid
+    FactoryGirl.build(:post, :category_id => "").should_not be_valid
   end
 
 end

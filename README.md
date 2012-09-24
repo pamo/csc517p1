@@ -15,7 +15,12 @@ Starting URL for the application.
     b. Remote   http://152.46.16.94:3000
 
 Command(s) to run to start the app
-    None
+    Login as an admin user:
+        Username: Admin
+        Password: admin
+    Login as normal user:
+        Username: Mary
+        Password: mary
 
 Other notes (extra credit functionality implemented, limitations, etc.)
 

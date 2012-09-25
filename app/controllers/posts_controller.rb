@@ -6,7 +6,9 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all()
     @posts = Post.order('updated_at desc')
-
+    @posts.each do |p|
+      p.votes = Vote.find_all_by_pid(p.id).count
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -18,6 +20,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new(:post => @post)
+    @post.votes = Vote.find_all_by_pid(@post.id).count
 
     respond_to do |format|
       format.html # show.html.erb

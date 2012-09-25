@@ -62,6 +62,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -81,8 +82,15 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
+    @posts = Post.find_all_by_username(@user.name)
+    @comments = Comment.find_all_by_username(@user.name)
+    @votes = Vote.find_all_by_uid(@user.id)
     begin
       @user.destroy
+      @posts.each(&:destroy)
+      @comments.each(&:destroy)
+      @votes.each(&:destroy)
+
       flash[:notice] = "User #{@user.name} deleted"
     rescue Exception => e
       flash[:notice] = e.message

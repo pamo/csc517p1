@@ -1,0 +1,16 @@
+Category
+	test validation of name presense
+Post
+	test validation of username presense
+	test validation of category presense
+	test validation of content presense
+Comment
+	test validation of body presense
+	test validation of username presense
+	test validation of post_id presense
+User
+	test validation of username presense
+	test validation of password presense
+	test validation of password confirmation
+	test validation of username uniquness
+	test last user not deleted/admin remains

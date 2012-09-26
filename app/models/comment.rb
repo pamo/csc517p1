@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('body LIKE ?', "%#{search}%")
+      where('body LIKE ? OR username LIKE ?', "%#{search}%", "%#{search}%")
     else
       scoped
     end

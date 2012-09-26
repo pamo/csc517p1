@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('content LIKE ?', "%#{search}%")
+      where('content LIKE ? OR username LIKE ?', "%#{search}%", "%#{search}%")
     else
       scoped
     end

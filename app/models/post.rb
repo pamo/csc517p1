@@ -9,7 +9,9 @@ class Post < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('content LIKE ? OR username LIKE ?', "%#{search}%", "%#{search}%")
+      postCategory = Category.find_by_name('#{search}')
+      catID = postCategory.object_id
+      where('content LIKE ? OR username LIKE ? OR category_id LIKE ?', "%#{search}%", "%#{search}%", "%#{catID}%")
     else
       scoped
     end

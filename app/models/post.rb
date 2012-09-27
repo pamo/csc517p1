@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   def self.search(search)
     if search
       puts search
-      postCategory = Category.where('name = ?', search).first()
+      postCategory = Category.where('name LIKE ?', search).first()
       puts postCategory.name
       catID = postCategory.id
       puts catID

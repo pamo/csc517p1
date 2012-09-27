@@ -25,14 +25,14 @@
       <b>Posts</b>
       <ul>
         <% @found_posts.each do |post| %>
-            <li><%= post.content %><%= link_to 'Show', post %></li>
+            <li><%= post.content %> <%= link_to 'View full Post', post %></li>
         <% end %>
       </ul>    <br/>
 
       <b>Comments</b>
       <ul>
         <% @found_comments.each do |comment| %>
-            <li><%= comment.body %></li>
+            <li><%= comment.body %> <%= link_to 'View full Post', Post.find(comment.post_id) %></li>
         <% end %>
       </ul>
 

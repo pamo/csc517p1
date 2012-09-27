@@ -10,11 +10,18 @@ class Post < ActiveRecord::Base
   def self.search(search)
     if search
       puts search
-      postCategory = Category.where('name LIKE ?', search).first()
-      puts postCategory.name
-      catID = postCategory.id
-      puts catID
-      where('content LIKE ? OR username LIKE ? OR category_id = ?', "%#{search}%", "%#{search}%", catID)
+     # postCategory = Category.where('name LIKE ?', search).first()
+      if postCategory = Category.where('name LIKE ?', search).first()
+        catID = postCategory.id
+        puts catID
+        puts postCategory.name
+        where('content LIKE ? OR username LIKE ? OR category_id = ?', "%#{search}%", "%#{search}%", catID)
+      else
+        #catID = postCategory.id
+        # puts catID
+        where('content LIKE ? OR username LIKE ?', "%#{search}%", "%#{search}%")
+      end
+
     else
       scoped
     end

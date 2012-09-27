@@ -10,13 +10,13 @@ class Post < ActiveRecord::Base
   def self.search(search)
     if search
       puts search
-      if postCategory = Category.where('name LIKE ?', search).first()
+      if postCategory = Category.where('name LIKE ?', search.gsub(/\s+/, "")).first()
         catID = postCategory.id
         puts catID
         puts postCategory.name
         where('content LIKE ? OR username LIKE ? OR category_id = ?', "%#{search}%", "%#{search}%", catID)
       else
-        where('content LIKE ? OR username LIKE ?', "%#{search}%", "%#{search}%")
+        where('content LIKE ? OR username LIKE ?', "%#{search.gsub(/\s+/, "")}%", "%#{search.gsub(/\s+/, "")}%")
       end
 
     else

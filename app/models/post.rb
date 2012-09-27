@@ -10,11 +10,11 @@ class Post < ActiveRecord::Base
   def self.search(search)
     if search
       puts search
-      postCategory = Category.find(:first, :conditions => ['name = ?', search])
+      postCategory = Category.where('name = ?', search).first()
       puts postCategory.name
       catID = postCategory.id
       puts catID
-      where('content LIKE ? OR username LIKE ? OR category_id = ?', "%#{search}%", "%#{search}%", "%#{catID}%")
+      where('content LIKE ? OR username LIKE ? OR category_id = ?', "%#{search}%", "%#{search}%", catID)
     else
       scoped
     end

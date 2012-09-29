@@ -1,9 +1,10 @@
 FactoryGirl.define do
   factory :comment do
-    username    "Admin"
+    username    "admin"
     body        "Goodbye World"
     votes       0
     post_id     1
+    id  1
 
     #factory :comment_with_votes do
     #  ignore do

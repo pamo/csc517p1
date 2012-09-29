@@ -6,7 +6,7 @@ require_relative '../../spec/support/spec_test_helper'
 
     before(:each) do
       @user = FactoryGirl.build(:user)
-      login(@user)
+      #login(@user)
     end
 
 =begin
@@ -78,29 +78,10 @@ require_relative '../../spec/support/spec_test_helper'
   describe "#update" do
     describe "with valid parameters" do
 
-      it "should find post and return object" do
-        Post.should_receive(:find).with("1").and_return(@post)
-        put :update, :id => "1", :post => {}
-      end
-
-      it "should update the post object's attributes" do
-        @post.should_receive(:update_attributes).and_return(true)
-        put :update, :id => "1", :post => {}
-      end
-
-      it "should have a flash notice" do
-        put :update, :id => "1", :post => {}
-        flash[:notice].should_not be_blank
-      end
-
-      it "should have a successful flash notice" do
-        put :update, :id => "1", :bird => {}
-        flash[:notice].should eql 'Post was successfully updated.'
-      end
-
-      it "should redirect to the post's show page" do
-        put :update, :id => "1", :post => {}
-        response.should redirect_to(post_url(@post))
+      it "should redirect to login path" do
+        get :new
+        response.should_not be_success
+        response.should redirect_to(login_path)
       end
 
     end

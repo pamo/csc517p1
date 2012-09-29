@@ -4,8 +4,16 @@ class User < ActiveRecord::Base
   has_many :comments, :through => :posts
   validates :name, :presence => true, :uniqueness => true
 
-  validates :password, :confirmation => true
-  validate  :password_must_be_present
+  validates :password,
+            :presence => true,
+            :confirmation => true,
+            :on => :create
+  validates :password,
+            :confirmation => true,
+            :allow_blank => true,
+            :on => :update
+
+  #validate  :password_must_be_present
   attr_accessor :password_confirmation, :password
 
   def User.authenticate(name, password)

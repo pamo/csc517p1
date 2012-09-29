@@ -5,13 +5,15 @@ require_relative '../../spec/support/spec_test_helper'
   describe PostsController do
 
     before(:each) do
-      user = FactoryGirl.build(:user)
-      login(user)
+      @user = FactoryGirl.build(:user)
+      login(@user)
     end
 
+=begin
     after(:each) do
-       FactoryGirl.delete(user)
+      delete :destroy, :id => user
     end
+=end
 
   describe "GET Index" do
     it "gets the index view" do
@@ -40,7 +42,7 @@ require_relative '../../spec/support/spec_test_helper'
   describe "#create" do
     describe "with valid parameters" do
       it "creates a new post object" do
-        @post = FactoryGirl(:post)
+        @post = FactoryGirl.build(:post)
         put :create, :id => "1", :post => {}
         @post.should be_an_instance_of Post
        # flash[:notice].should_not be_nil

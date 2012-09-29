@@ -7,7 +7,6 @@ require_relative '../../spec/support/spec_test_helper'
     before(:all) do
       user = FactoryGirl.build(:user)
       login(user)
-
     end
 
     after(:all) do

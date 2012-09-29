@@ -6,7 +6,7 @@ module SpecTestHelper
   def login(user)
     puts "spec_test_helper login(#{user.name})"
     #session[:user_id] = user.id
-    post "/sessions/new", :login => user.name, :password => user.password, :password_confirmation => user.password
+    post "/sessions/new", :username => user.name, :password => user.password, :password_confirmation => user.password
   end
 
 =begin

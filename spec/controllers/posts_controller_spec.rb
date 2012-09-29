@@ -4,12 +4,12 @@ require_relative '../../spec/support/spec_test_helper'
 
   describe PostsController do
 
-    before(:all) do
+    before(:each) do
       user = FactoryGirl.build(:user)
       login(user)
     end
 
-    after(:all) do
+    after(:each) do
        FactoryGirl.delete(user)
     end
 

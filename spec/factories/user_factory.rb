@@ -6,15 +6,17 @@ FactoryGirl.define do
     name "JohnDoe"
     password  "password"
     password_confirmation "password"
+    id  1
     admin false
   end
 
   # This will use the User class (Admin would have been guessed)
   factory :admin, class: User do
-    name "Admin"
+    name "admin"
     password  "admin"
     password_confirmation  "admin"
-    admin      true
+    id  2
+    admin  true
   end
 
   #factory :session_user, class: Session do

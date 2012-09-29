@@ -6,6 +6,7 @@ require_relative '../../spec/support/spec_test_helper'
 
     before(:each) do
       @user = FactoryGirl.build(:user)
+      @admin = FactoryGirl.build(:admin)
       #login(@user)
     end
 
@@ -27,17 +28,36 @@ require_relative '../../spec/support/spec_test_helper'
     end
   end
 
-=begin
-  describe "GET New" do
-    it "gets the new view" do
-      get "new"
-      response.status.should be 200
-    end
+    describe "#new" do
 
-    it "gets the correct new post view template"
-    response.should render_template("posts/new")
-  end
-=end
+      describe "with invalid parameters" do
+
+        it "should redirect to login path" do
+          get "new"
+          response.should_not be_success
+          response.should redirect_to(login_path)
+        end
+
+      end
+
+      describe "with valid parameters" do
+
+        it "with user should render new template" do
+          login(@user)
+          get "new"
+          response.should redirect_to(:action => "new")
+        end
+
+        it "with admin should render new template" do
+          login(@admin)
+          get "new"
+          response.should redirect_to(:action => "new")
+        end
+
+      end
+
+
+    end
 
   describe "#create" do
     describe "with valid parameters" do
@@ -49,80 +69,9 @@ require_relative '../../spec/support/spec_test_helper'
       end
     end
 
-=begin
-    describe "with invalid parameters" do
-
-    end
-=end
-
   end
 
-=begin
-  describe "#show" do
-    it "shows the post object" do
-      get "show"
-      response.should eql :success
-    end
-  end
-=end
 
-=begin
-  describe "#edit" do
-    it "edits the post object" do
-      get "edit"
-      response.should eql :success
-    end
-  end
-=end
-
-  describe "#update" do
-    describe "with valid parameters" do
-
-      it "should redirect to login path" do
-        get :new
-        response.should_not be_success
-        response.should redirect_to(login_path)
-      end
-
-    end
-
-=begin
-    describe "with invalid parameters" do
-
-    end
-=end
-  end
-
-=begin
-  describe "#destroy" do
-    it "destroys the post object" do
-      get "destroy"
-      @destroy = FactoryGirl(:post)
-      @destroy.destroy
-      @destroy.should eql nil
-    end
-  end
-=end
-
-
-  #Validation Tests
-=begin
-
-  describe "should not save post with no content" do
-    post = Post.new
-    assert !post.save, "Saved post without content"
-  end
-
-  describe "should not save post without category" do
-    post = Post.new
-    assert !post.save, "Saved the post without category"
-  end
-
-  describe "should not save post without username" do
-    post = Post.new
-    assert !post.save, "Saved the post without username"
-  end
-=end
 
   end
 

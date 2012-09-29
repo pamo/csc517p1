@@ -8,7 +8,7 @@ require_relative '../../spec/support/spec_test_helper'
 
     before(:each) do
       @user = FactoryGirl.build(:user)
-      @admin = FactoryGirl.build(:admin)
+      @admin = FactoryGirl.build(:user, name: "admin")
     end
 
 =begin
@@ -80,7 +80,13 @@ require_relative '../../spec/support/spec_test_helper'
         response.status.should be 200
       end
 
-
+      it "should create and redirect to show admin post" do
+        login(@admin)
+        @post = FactoryGirl.create(:post, :id => current_user)
+        put :create, :id => "1", :post => {}
+        #flash[:notice].should_not be_nil
+        response.status.should be 200
+      end
 
 
     end

@@ -8,6 +8,7 @@ FactoryGirl.define do
     password_confirmation "password"
     id  1
     admin false
+
   end
 
   # This will use the User class (Admin would have been guessed)

@@ -29,11 +29,9 @@ class User < ActiveRecord::Base
     if User.count.zero?
       raise "Can't delete last user"
     end
-
-    if user.id == 1
+    if self.admin?
       raise "Can't delete admin"
     end
-
   end
 
   private

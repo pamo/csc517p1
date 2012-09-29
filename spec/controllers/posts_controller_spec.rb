@@ -1,7 +1,18 @@
 require 'spec_helper'
+require_relative '../../spec/support/spec_test_helper'
 
 
   describe PostsController do
+
+    before(:all) do
+      user = FactoryGirl.build(:user)
+      login(user)
+
+    end
+
+    after(:all) do
+       FactoryGirl.delete(user)
+    end
 
   describe "GET Index" do
     it "gets the index view" do
@@ -15,6 +26,7 @@ require 'spec_helper'
     end
   end
 
+=begin
   describe "GET New" do
     it "gets the new view" do
       get "new"
@@ -24,39 +36,82 @@ require 'spec_helper'
     it "gets the correct new post view template"
     response.should render_template("posts/new")
   end
+=end
 
   describe "#create" do
-    it "creates a new post object" do
-      @post = FactoryGirl(:post)
-      @post.should be_an_instance_of Post
-      flash[:notice].should_not be_nil
+    describe "with valid parameters" do
+      it "creates a new post object" do
+        @post = FactoryGirl(:post)
+        put :create, :id => "1", :post => {}
+        @post.should be_an_instance_of Post
+       # flash[:notice].should_not be_nil
+      end
     end
+
+=begin
+    describe "with invalid parameters" do
+
+    end
+=end
+
   end
 
+=begin
   describe "#show" do
     it "shows the post object" do
       get "show"
       response.should eql :success
     end
   end
+=end
 
+=begin
   describe "#edit" do
     it "edits the post object" do
       get "edit"
       response.should eql :success
     end
   end
+=end
 
   describe "#update" do
-    it "updates the post object" do
-      put "update"
-      @update = FactoryGirl(:post)
-      @update.update 'More Content'
-      @update.content.should eql 'More Content'
-      flash[:notice].should_not be_nil
+    describe "with valid parameters" do
+
+      it "should find post and return object" do
+        Post.should_receive(:find).with("1").and_return(@post)
+        put :update, :id => "1", :post => {}
+      end
+
+      it "should update the post object's attributes" do
+        @post.should_receive(:update_attributes).and_return(true)
+        put :update, :id => "1", :post => {}
+      end
+
+      it "should have a flash notice" do
+        put :update, :id => "1", :post => {}
+        flash[:notice].should_not be_blank
+      end
+
+      it "should have a successful flash notice" do
+        put :update, :id => "1", :bird => {}
+        flash[:notice].should eql 'Post was successfully updated.'
+      end
+
+      it "should redirect to the post's show page" do
+        put :update, :id => "1", :post => {}
+        response.should redirect_to(post_url(@post))
+      end
+
     end
+
+=begin
+    describe "with invalid parameters" do
+
+    end
+=end
   end
 
+=begin
   describe "#destroy" do
     it "destroys the post object" do
       get "destroy"
@@ -65,9 +120,11 @@ require 'spec_helper'
       @destroy.should eql nil
     end
   end
+=end
 
 
   #Validation Tests
+=begin
 
   describe "should not save post with no content" do
     post = Post.new
@@ -83,6 +140,7 @@ require 'spec_helper'
     post = Post.new
     assert !post.save, "Saved the post without username"
   end
+=end
 
   end
 

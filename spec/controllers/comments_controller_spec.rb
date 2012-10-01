@@ -6,8 +6,8 @@ describe CommentsController do
   fixtures :all
 
   before(:each) do
-    @user = FactoryGirl.build(:user)
-    @post = FactoryGirl.build(:post)
+    @user = FactoryGirl.build(:user, :name => "admin")
+    @post = FactoryGirl.create(:post)
     @comment = FactoryGirl.build(:comment)
   end
 
@@ -16,20 +16,21 @@ describe CommentsController do
     describe "when a user is not logged in" do
 
       it "should redirect to login path" do
-        get :create
-        response.should redirect_to(:login)
+        post :create
+        response.should redirect_to(login_path)
       end
 
     end
 
     describe "when a user is logged in" do
-      #login(:user)
       it "should allow user to add comment" do
-        put :create, :id => "1", :comment => {}
-        #flash[:notice].should_not be_nil
-        response.should redirect_to(post_path(@comment.post_id))
-      end
+        login(@user)
+        post :create, :id => "1", :comment => {}
+        #response.should have_tag("form#new_comment")
+        #response.should redirect_to(post_path(:post_id))
+        flash[:notice].should_not be_nil
 
+      end
 
     end
   end

@@ -4,6 +4,7 @@ FactoryGirl.define do
     content   "Hello World"
     category_id  1
     votes   0
+    id     1
 
     #factory :posts_with_votes do
     #  ignore do

@@ -25,7 +25,7 @@ require_relative '../../spec/support/spec_test_helper'
     end
   end
 
-    describe "#new" do
+  describe "#new" do
 
       describe "with invalid parameters" do
 

@@ -9,13 +9,9 @@ require_relative '../../spec/support/spec_test_helper'
     before(:each) do
       @user = FactoryGirl.build(:user)
       @admin = FactoryGirl.build(:user, name: "admin")
-    end
 
-=begin
-    after(:each) do
-      delete :destroy, :id => user
-    end
-=end
+  end
+
 
   describe "GET Index" do
     it "gets the index view" do
@@ -39,27 +35,26 @@ require_relative '../../spec/support/spec_test_helper'
           response.should redirect_to(login_path)
         end
 
+
       end
 
-=begin
       describe "with valid parameters" do
 
         it "with user should render new template" do
-          login(@user)
-          get :new
-          response.should render_template("/posts/new")
+            login(@user)
+            get :new
+            response.should be_success
+            response.status.should be 200
         end
-=end
 
-=begin
         it "with admin should render new template" do
           login(@admin)
-          get "new"
-          response.should redirect_to(:action => "new")
+          get :new
+          response.should be_success
+          response.should be 200
         end
-=end
 
-      #end
+      end
 
 
     end

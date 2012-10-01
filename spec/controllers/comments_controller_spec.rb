@@ -27,7 +27,7 @@ describe CommentsController do
 
     it "gets the correct index view template" do
       get "index"
-      response.should redirect_to(comments_path)
+      response.should redirect_to("/")
     end
   end
 
@@ -38,7 +38,7 @@ describe CommentsController do
       it "should redirect to login path" do
         get :new
         response.should_not be_success
-        response.should redirect_to(login_path)
+        response.should redirect_to("comments/new")
       end
 
     end
@@ -82,7 +82,7 @@ describe CommentsController do
         #flash[:notice].should_not be_nil
         response.should redirect_to(post_path(@comment.post_id))
       end
-                                         3
+
 
     end
 

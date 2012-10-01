@@ -33,15 +33,7 @@ describe UsersController do
         response.status.should be 200
       end
 
-      it "should get the admin index view" do
-        login(@admin)
-        get :index
-        response.should be_success
-      end
 
-      it "should get the correct admin index view" do
-
-      end
     end
   end
 

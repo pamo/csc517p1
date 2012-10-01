@@ -18,9 +18,17 @@ Command(s) to run to start the app
     Login as an admin user:
         Username: Admin
         Password: admin
+        Username: Pam
+        Password: pam
     Login as normal user:
         Username: Mary
         Password: mary
+        Username: Bot
+        Password: bot
+    * Please do not delete or edit these users *
 
 Other notes (extra credit functionality implemented, limitations, etc.)
+    Access functionality through what is given in the views.
+    Do not try to access routes if a link is not provided in any of the pages.
+        e.g. comments/new, searches/new
 

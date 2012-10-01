@@ -6,6 +6,7 @@ describe UsersController do
 
   before(:each) do
     @user = FactoryGirl.build(:user)
+    @admin = FactoryGirl.build(:admin)
   end
 
 
@@ -20,37 +21,43 @@ describe UsersController do
     end
 
     describe "with valid parameters" do
-      it "should get the index view" do
+      it "should get the user index view" do
         login(@user)
         get :index
         response.should be_success
       end
 
-      it "should get the correct index view" do
+      it "should get the correct user index view" do
         login(@user)
         get :index
         response.status.should be 200
       end
+
+      it "should get the admin index view" do
+        login(@admin)
+        get :index
+        response.should be_success
+      end
+
+      it "should get the correct admin index view" do
+
+      end
     end
-
-
   end
+
+  describe "GET New" do
+
+     it "gets the new user view" do
+        get :new
+        response.status.should be 200
+     end
+
+      it "gets the correct new user view" do
+        get :new
+        response.should render_template("users/new")
+      end
+  end
+
+
+
 end
-
-#describe "GET New" do
-#  it "gets the new view" do
-#    get "new"
-#    response.status.should be 200
-#  end
-#
-#  it "gets the correct new post view template"
-#  response.should render_template("users/new")
-#end
-
-=begin
-  describe "#create" do
-    #@user = FactoryGirl.build(:user)
-    #@user.should be_an_instance_of User
-    #flash[:notice].should_not be_nil
-  end
-=end

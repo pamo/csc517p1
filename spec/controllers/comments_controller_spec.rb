@@ -16,7 +16,7 @@ describe CommentsController do
     describe "when a user is not logged in" do
 
       it "should redirect to login path" do
-        post :create
+        post :create, :id => "1", :comment => {}
         response.should redirect_to(login_path)
       end
 

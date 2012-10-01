@@ -6,7 +6,7 @@ describe UsersController do
 
   before(:each) do
     @user = FactoryGirl.build(:user)
-    @admin= FactoryGirl.build(:admin)
+    @admin = FactoryGirl.build(:user, name: "admin")
   end
 
 
@@ -45,7 +45,7 @@ describe UsersController do
       it "should get the correct admin index view" do
         login(@admin)
         get :index
-        response.should render_template("/admin")
+        response.should redirect_to("admin#index")
       end
     end
   end

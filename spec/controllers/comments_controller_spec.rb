@@ -16,28 +16,8 @@ describe CommentsController do
     describe "when a user is not logged in" do
 
       it "should redirect to login path" do
-<<<<<<< HEAD
-<<<<<<< HEAD
-        get :new
-        response.should_not be_success
-        response.should redirect_to(login_path)
-=======
-=======
->>>>>>> test user not logged in
         get :create
         response.should redirect_to(:login)
-<<<<<<< HEAD
->>>>>>> Test that a user is redirected to the log in page when attempting to
-=======
-=======
-        get :new
-        response.should_not be_success
-        response.should redirect_to(login_path)
-<<<<<<< HEAD
->>>>>>> test user not logged in
-=======
->>>>>>> 9f80108ad9ba9482f928ebfc9b600f267d0f2a12
->>>>>>> test user not logged in
       end
 
     end
@@ -54,12 +34,4 @@ describe CommentsController do
     end
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 end
-=======
-endend
->>>>>>> test user not logged in
-=======
-end
->>>>>>> test user not logged in

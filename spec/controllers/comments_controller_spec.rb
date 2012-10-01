@@ -23,7 +23,14 @@ describe CommentsController do
 =======
         get :create
         response.should redirect_to(:login)
+<<<<<<< HEAD
 >>>>>>> Test that a user is redirected to the log in page when attempting to
+=======
+=======
+        get :new
+        response.should_not be_success
+        response.should redirect_to(login_path)
+>>>>>>> test user not logged in
       end
 
     end
@@ -40,4 +47,8 @@ describe CommentsController do
     end
   end
 
+<<<<<<< HEAD
 end
+=======
+endend
+>>>>>>> test user not logged in

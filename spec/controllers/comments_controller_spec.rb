@@ -38,7 +38,7 @@ describe CommentsController do
       it "should redirect to login path" do
         get :new
         response.should_not be_success
-        response.should redirect_to("comments/new")
+        response.should redirect_to(login_path)
       end
 
     end

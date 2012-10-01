@@ -53,10 +53,7 @@ require_relative '../../spec/support/spec_test_helper'
           response.should be_success
           response.should be 200
         end
-
       end
-
-
     end
 
   describe "#create" do
@@ -82,8 +79,6 @@ require_relative '../../spec/support/spec_test_helper'
         #flash[:notice].should_not be_nil
         response.status.should be 200
       end
-
-
     end
 
   end

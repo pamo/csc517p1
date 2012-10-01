@@ -22,6 +22,7 @@ describe CommentsController do
 
     end
 
+<<<<<<< HEAD
     describe "when a user is logged in" do
       it "should allow user to add comment" do
         login(@user)
@@ -33,6 +34,8 @@ describe CommentsController do
       end
 
     end
+=======
+>>>>>>> Removed test because we're going to test in posts controller instead
   end
 
 end

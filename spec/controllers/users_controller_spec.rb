@@ -6,7 +6,7 @@ describe UsersController do
 
   before(:each) do
     @user = FactoryGirl.build(:user)
-    @admin = FactoryGirl.build(:admin)
+    @admin= FactoryGirl.build(:admin)
   end
 
 
@@ -20,7 +20,7 @@ describe UsersController do
       end
     end
 
-    describe "with valid parameters" do
+    describe "with valid parameters as user" do
       it "should get the user index view" do
         login(@user)
         get :index
@@ -32,8 +32,21 @@ describe UsersController do
         get :index
         response.status.should be 200
       end
+    end
 
+    describe "with valid parameters as admin" do
 
+      it "should get the admin index view" do
+        login(@admin)
+        get :index
+        response.should be_success
+      end
+
+      it "should get the correct admin index view" do
+        login(@admin)
+        get :index
+        response.should render_template("/admin")
+      end
     end
   end
 

@@ -15,12 +15,12 @@ require_relative '../../spec/support/spec_test_helper'
 
   describe "GET Index" do
     it "gets the index view" do
-      get "index"
+      get :index
       response.status.should be 200
     end
 
     it "gets the correct index view template" do
-      get "index"
+      get :index
       response.should render_template("posts/index")
     end
   end
@@ -44,14 +44,14 @@ require_relative '../../spec/support/spec_test_helper'
             login(@user)
             get :new
             response.should be_success
-            response.status.should be 200
+            response.should render_template("posts/new")
         end
 
         it "with admin should render new template" do
           login(@admin)
           get :new
           response.should be_success
-          response.should be 200
+          response.should render_template("posts/new")
         end
       end
     end

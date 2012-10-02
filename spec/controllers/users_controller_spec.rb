@@ -1,68 +1,81 @@
 require 'spec_helper'
-#require_relative '../../spec/support/spec_test_helper'
+require_relative '../../spec/support/spec_test_helper'
+
 
 describe UsersController do
   render_views
+  fixtures :all
 
   before(:each) do
+    @admin = FactoryGirl.build(:user, :name => "admin")
     @user = FactoryGirl.build(:user)
-    @admin = FactoryGirl.build(:user, name: "admin")
+  end
+
+  after(:each) do
+    @admin = nil
+    @user = nil
   end
 
 
-  describe "GET Index" do
+  describe "Create New User" do
 
-    describe "with invalid parameters" do
-      it "should redirect to login page" do
-        get :index
-        response.should_not be_success
-        response.should redirect_to(login_path)
-      end
-    end
+    describe "when a user is not logged in" do
 
-    describe "with valid parameters as user" do
-      it "should get the user index view" do
-        login(@user)
-        get :index
-        response.should be_success
-      end
-
-      it "should get the correct user index view" do
-        login(@user)
-        get :index
-        response.status.should be 200
-      end
-    end
-
-    describe "with valid parameters as admin" do
-
-      it "should get the admin index view" do
-        login(@admin)
-        get :index
-        response.should be_success
-      end
-
-      it "should get the correct admin index view" do
-        login(@admin)
-        get :index
-        response.should redirect_to("admin#index")
-      end
-    end
-  end
-
-  describe "GET New" do
-
-     it "gets the new user view" do
+      it "should allow user to sign up" do
         get :new
-        response.status.should be 200
-     end
-
-      it "gets the correct new user view" do
-        get :new
-        response.should render_template("users/new")
+        puts flash[:notice]
+        response.should render_template(:new)
       end
+
+      it "should not allow a blank form" do
+        put :create, :id => @user.id, :user => {}
+        response.should render_template(:new)
+      end
+    end
+
+    describe "Edit user" do
+      describe "when a user is not logged in" do
+        it "should redirect to login page" do
+          post :update, :id => @user.id, :user => {:name => "adas"}
+          response.should redirect_to(login_path)
+        end
+      end
+      describe "when a user is logged in" do
+        it "should edit the user"  do
+          login(@user)
+          post :update, :id => @user.id, :user => {:name => "a new name"}
+          flash[:notice].should eq("User a new name was successfully updated.")
+          response.should redirect_to(@user)
+        end
+      end
+    end
+
+    describe "Destroy user" do
+      describe "when a user is not logged in" do
+        it "should redirect to login page" do
+          post :destroy, :id => @user.id
+          puts flash[:notice]
+          response.should redirect_to(login_path)
+        end
+      end
+      describe "when a user is logged in" do
+        it "should not delete the last user"  do
+          login(@user)
+          post :destroy, :id => @user.id
+          flash[:notice].should eq("Can't delete last user")
+        end
+
+        it "should delete the user if current user is admin" do
+          @admin = FactoryGirl.create(:admin)
+          login(@admin)
+          post :destroy, :id => @user.id
+          flash[:notice].should eq("User #{@user.name} deleted")
+        end
+      end
+    end
+
   end
-
-
 
 end
+
+

@@ -9,7 +9,6 @@ describe UsersController do
   before(:each) do
     @admin = FactoryGirl.build(:user, :name => "admin")
     @user = FactoryGirl.build(:user)
-<<<<<<< HEAD
   end
 
   after(:each) do
@@ -31,7 +30,6 @@ describe UsersController do
       it "should not allow a blank form" do
         put :create, :id => @user.id, :user => {}
         response.should render_template(:new)
-=======
     @user2 = FactoryGirl.build(:user2)
     @admin = FactoryGirl.build(:user, name: "admin")
     @admin2 = FactoryGirl.build(:user, name: "AdminJoe")
@@ -70,10 +68,8 @@ describe UsersController do
         @user2 = FactoryGirl.create(:user2)
         post :destroy, :id => @user2.id
         response.should_not be_success
->>>>>>> refactored user controller tests - passing
       end
 
-<<<<<<< HEAD
     describe "Edit user" do
       describe "when a user is not logged in" do
         it "should redirect to login page" do
@@ -118,7 +114,6 @@ describe UsersController do
   end
 
 end
-=======
       it "should destroy if admin user" do
 
         login(@admin)
@@ -136,9 +131,12 @@ end
 
     end
 
-    it "should"
+    it "should edit password" do
+
+    end
 
   end
->>>>>>> refactored user controller tests - passing
+
+  end
 
 

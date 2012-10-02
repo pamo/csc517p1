@@ -9,6 +9,7 @@ describe UsersController do
   before(:each) do
     @admin = FactoryGirl.build(:user, :name => "admin")
     @user = FactoryGirl.build(:user)
+    @admin2 = FactoryGirl.build(:user, name: "AdminJoe")
   end
 
   after(:each) do
@@ -30,10 +31,7 @@ describe UsersController do
       it "should not allow a blank form" do
         put :create, :id => @user.id, :user => {}
         response.should render_template(:new)
-    @user2 = FactoryGirl.build(:user2)
-    @admin = FactoryGirl.build(:user, name: "admin")
-    @admin2 = FactoryGirl.build(:user, name: "AdminJoe")
-  end
+      end
 
   describe "Create New User" do
 
@@ -52,25 +50,7 @@ describe UsersController do
       end
   end
 
-  describe "Destroy User" do
-
-    describe "when a user is not logged in" do
-      it "should redirect to login page" do
-        post :destroy, :id => @user.id
-        puts flash[:notice]
-        response.should redirect_to(login_path)
-      end
-    end
-    describe "when a user is logged in" do
-
-      it "should not destroy user if non-admin" do
-        login(@user)
-        @user2 = FactoryGirl.create(:user2)
-        post :destroy, :id => @user2.id
-        response.should_not be_success
-      end
-
-    describe "Edit user" do
+  describe "Edit user" do
       describe "when a user is not logged in" do
         it "should redirect to login page" do
           post :update, :id => @user.id, :user => {:name => "adas"}
@@ -85,7 +65,7 @@ describe UsersController do
           response.should redirect_to(@user)
         end
       end
-    end
+  end
 
     describe "Destroy user" do
       describe "when a user is not logged in" do
@@ -112,30 +92,10 @@ describe UsersController do
     end
 
   end
-
 end
-      it "should destroy if admin user" do
 
-        login(@admin)
-        post :destroy, :id => @user.id
-        puts flash[:notice]
-        response.should redirect_to(users_path)
-      end
 
-    end
-  end
 
-  describe "Edit User" do
-
-    it "should edit username" do
-
-    end
-
-    it "should edit password" do
-
-    end
-
-  end
 
   end
 

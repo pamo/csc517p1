@@ -3,7 +3,12 @@ csc517p1
 
 Back Channel App for CSC 517
 
+**      If you encounter any difficulties running the     **
+**      application on the remote host,                   **
+**      please contact the developers!                    **
+
 Individuals working on this project
+
     1. Pamela Ocampo       pmocampo@ncsu.edu
     2. Brittany Johnson    bijohnso@ncsu.edu
 

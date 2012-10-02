@@ -9,6 +9,7 @@ describe UsersController do
   before(:each) do
     @admin = FactoryGirl.build(:user, :name => "admin")
     @user = FactoryGirl.build(:user)
+<<<<<<< HEAD
   end
 
   after(:each) do
@@ -30,9 +31,49 @@ describe UsersController do
       it "should not allow a blank form" do
         put :create, :id => @user.id, :user => {}
         response.should render_template(:new)
+=======
+    @user2 = FactoryGirl.build(:user2)
+    @admin = FactoryGirl.build(:user, name: "admin")
+    @admin2 = FactoryGirl.build(:user, name: "AdminJoe")
+  end
+
+  describe "Create New User" do
+
+     it "should create a new non-admin user" do
+       put :create, :id => @user.id, :user => {}
+       puts flash[:notice]
+       response.should render_template(@user)
+     end
+
+      it "should create a new admin user" do
+        @admin2 = FactoryGirl.create(:admin2)
+        login(@admin)
+        put :create, :id => @admin2.id, :user => {}
+        puts flash[:notice]
+        response.should render_template(@admin2)
+      end
+  end
+
+  describe "Destroy User" do
+
+    describe "when a user is not logged in" do
+      it "should redirect to login page" do
+        post :destroy, :id => @user.id
+        puts flash[:notice]
+        response.should redirect_to(login_path)
       end
     end
+    describe "when a user is logged in" do
 
+      it "should not destroy user if non-admin" do
+        login(@user)
+        @user2 = FactoryGirl.create(:user2)
+        post :destroy, :id => @user2.id
+        response.should_not be_success
+>>>>>>> refactored user controller tests - passing
+      end
+
+<<<<<<< HEAD
     describe "Edit user" do
       describe "when a user is not logged in" do
         it "should redirect to login page" do
@@ -77,5 +118,27 @@ describe UsersController do
   end
 
 end
+=======
+      it "should destroy if admin user" do
+
+        login(@admin)
+        post :destroy, :id => @user.id
+        puts flash[:notice]
+        response.should redirect_to(users_path)
+      end
+
+    end
+  end
+
+  describe "Edit User" do
+
+    it "should edit username" do
+
+    end
+
+    it "should"
+
+  end
+>>>>>>> refactored user controller tests - passing
 
 

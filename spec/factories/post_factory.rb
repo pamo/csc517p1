@@ -5,16 +5,14 @@ FactoryGirl.define do
     category_id  1
     votes   0
     id     1
+  end
 
-    #factory :posts_with_votes do
-    #  ignore do
-    #    votes_count  0
-    #  end
-    #
-    #  after(:create) do |post, evaluator|
-    #    FactoryGirl.create_list(:votes, evaluator.votes_count, post: post)
-    #  end
-    #end
+  factory :post2, class: Post do
+    username  "Admin"
+    content   "Hello World"
+    category_id  2
+    votes   0
+    id     2
   end
 
 end
